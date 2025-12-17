@@ -241,8 +241,23 @@ PROFILES = [
                 "scale": 2,
                 "variants": [
                     {
-                        "name": "V1.91FN",
+                        "name": "V1.91F",
                         "bios": "191f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    }
+                ]
+            },
+
+            {
+                "id": "pocketbk2",
+                "title": "Acorn Pocket Book II",
+                "resolution": (480, 160),
+                "variants": [
+                    {
+                        "name": "V1.30F",
+                        "bios": "130f",
                         "languages": [
                             "en-GB",
                         ],
