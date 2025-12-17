@@ -341,8 +341,8 @@ class Selection:
     variant: int
 
 
-def run_mame(profile):
-
+def mame_command(profile):
+    
     command = [
         "mame",
         "-window",
@@ -366,10 +366,15 @@ def run_mame(profile):
             "-bios", profile["bios"],
         ])
 
-    subprocess.Popen(command,
+    return command
+
+
+def run_mame(profile):
+    subprocess.Popen(mame_command(profile),
                      start_new_session=True,
-                     stdout=subprocess.DEVNULL)
-    
+                     stdout=subprocess.DEVNULL,
+                     stderr=subprocess.DEVNULL)
+
 
 def language_symbol(variant):
     languages = variant["languages"]
@@ -436,10 +441,20 @@ def device_picker(stdscr):
         profile = vendor["devices"][selection.device]
         variant = profile["variants"][selection.variant]
 
+        # Fixup the profile.
+        profile["bios"] = variant["bios"]
+        if "id" in variant:
+            profile["id"] = variant["id"]
+
+        # Get the command.
+        command = mame_command(profile)
+
         # Display the description for the current selection.
+        stdscr.hline(height - 5, 0, curses.ACS_HLINE, width)
         if "description" in profile:
-            stdscr.addstr(height-2, 0, profile["description"])
-        stdscr.addstr(height-1, 0, language_description(variant))
+            stdscr.addstr(height-4, 0, profile["description"])
+        stdscr.addstr(height-3, 0, language_description(variant))
+        stdscr.addstr(height-2, 0, " ".join(command))
 
         # Get and handle input.
         key = stdscr.getch()
