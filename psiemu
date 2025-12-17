@@ -177,15 +177,23 @@ PROFILES = [
             },
     
             {
-                "id": "siena",
                 "title": "Siena",
                 "resolution": (240, 160),
                 "variants": [
                     {
                         "name": "V4.20F",
+                        "id": "siena",
                         "bios": "420f",
                         "languages": [
                             "en-GB",
+                        ],
+                    },
+                    {
+                        "name": "V4.21F",
+                        "id": "siena_fr",
+                        "bios": "421f",
+                        "languages": [
+                            "fr-FR",
                         ],
                     },
                 ]
