@@ -42,14 +42,25 @@ PROFILES = [
                 "bios": "191f",
                 "variants": [
                     {
-                        "name": "V1.91F/MULTI",
+                        "name": "V1.91F",
                         "bios": "191f",
-                        "description": "English, French, German, Spanish, and Italian",
+                        "languages": [
+                            "en-GB",
+                            "fr-FR",
+                            "de-DE",
+                            "es-ES",
+                            "it-IT",
+                        ]
                     },
                     {
-                        "name": "V1.80F/MULTI",
+                        "name": "V1.80F",
                         "bios": "180f",
-                        "description": "English, French, German, Italian",
+                        "languages": [
+                            "en-GB",
+                            "fr-FR",
+                            "de-DE",
+                            "it-IT",
+                        ],
                     },
                 ]
             },
@@ -61,9 +72,11 @@ PROFILES = [
                 "resolution": (480, 160),
                 "variants": [
                     {
-                        "name": "V3.22F/ENG",
+                        "name": "V3.22F",
                         "bios": "322f",
-                        "description": "English",
+                        "languages": [
+                            "en-GB",
+                        ],
                     },
                 ],
             },
@@ -75,34 +88,44 @@ PROFILES = [
                 "resolution": (480, 160),
                 "variants": [
                     {
-                        "name": "V3.40F/ENG",
+                        "name": "V3.40F",
                         "id": "psion3a2",
                         "bios": "340f",
-                        "description": "English"
+                        "languages": [
+                            "en-GB",
+                        ],
                     },
                     {
-                        "name": "V3.40F/ITA",
+                        "name": "V3.40F",
                         "id": "psion3a2_it",
                         "bios": "340f",
-                        "description": "Italian",
+                        "languages": [
+                            "it-IT",
+                        ],
                     },
                     {
-                        "name": "V3.40F/USA",
+                        "name": "V3.40F",
                         "id": "psion3a2_us",
                         "bios": "340f",
-                        "description": "French",
+                        "languages": [
+                            "en-US",
+                        ],
                     },
                     {
-                        "name": "V3.41F/DEU",
+                        "name": "V3.41F",
                         "id": "psion3a2_de",
                         "bios": "341f",
-                        "description": "German",
+                        "languages": [
+                            "de-DE",
+                        ],
                     },
                     {
-                        "name": "V3.43F/RUS",
+                        "name": "V3.43F",
                         "id": "psion3a2_ru",
                         "bios": "343f",
-                        "description": "Russian",
+                        "languages": [
+                            "ru-RU",
+                        ],
                     },
                 ],
             },
@@ -113,8 +136,11 @@ PROFILES = [
                 "resolution": (480, 160),
                 "variants": [
                     {
-                        "name": "V5.20F/ENG",
+                        "name": "V5.20F",
                         "bios": "520f",
+                        "languages": [
+                            "en-GB",
+                        ],
                     },
                 ],
             },
@@ -125,8 +151,11 @@ PROFILES = [
                 "resolution": (480, 160),
                 "variants": [
                     {
-                        "name": "V6.16F/ENG",
+                        "name": "V6.16F",
                         "bios": "616f",
+                        "languages": [
+                            "en-GB",
+                        ],
                     },
                 ]
             },
@@ -137,8 +166,11 @@ PROFILES = [
                 "resolution": (240, 160),
                 "variants": [
                     {
-                        "name": "V4.20F/ENG",
+                        "name": "V4.20F",
                         "bios": "420f",
+                        "languages": [
+                            "en-GB",
+                        ],
                     },
                 ]
             },
@@ -150,11 +182,17 @@ PROFILES = [
                 "variants": [
                     {
                         "name": "V2.40F",
-                        "bios": "240f"
+                        "bios": "240f",
+                        "languages": [
+                            "en-GB",
+                        ],
                     },
                     {
                         "name": "V1.00F",
                         "bios": "100f",
+                        "languages": [
+                            "en-GB",
+                        ],
                     },
                 ],
             },
@@ -167,6 +205,9 @@ PROFILES = [
                     {
                         "name": "V7.20F",
                         "bios": "720f",
+                        "languages": [
+                            "en-GB",
+                        ],
                     },
                 ],
             },
@@ -184,8 +225,11 @@ PROFILES = [
                 "scale": 2,
                 "variants": [
                     {
-                        "name": "V1.91F/ACN",
+                        "name": "V1.91FN",
                         "bios": "191f",
+                        "languages": [
+                            "en-GB",
+                        ],
                     }
                 ]
             },
@@ -194,6 +238,16 @@ PROFILES = [
     },
     
 ]
+
+LANGUAGES = {
+    "de-DE": {"name": "German", "symbol": "🇩🇪"},
+    "en-GB": {"name": "British English", "symbol": "🇬🇧"},
+    "en-US": {"name": "American English", "symbol": "🇺🇸"},
+    "es-ES": {"name": "Spanish", "symbol": "🇪🇸"},
+    "fr-FR": {"name": "French", "symbol": "🇫🇷"},
+    "it-IT": {"name": "Italian", "symbol": "🇮🇹"},
+    "ru-RU": {"name": "Russian", "symbol": "🇷🇺"},
+}
 
 NOTES = """
 Special keys:
@@ -214,6 +268,14 @@ Silkscreen buttons:
 - Sheet -> F8
 
 """
+
+
+@dataclass
+class Selection:
+
+    vendor: int
+    device: int
+    variant: int
 
 
 def run_mame(profile):
@@ -246,12 +308,18 @@ def run_mame(profile):
                      stdout=subprocess.DEVNULL)
     
 
-@dataclass
-class Selection:
+def language_symbol(variant):
+    languages = variant["languages"]
+    if len(languages) > 1:
+        return "🌎"
+    elif len(languages) == 1:
+        return LANGUAGES[languages[0]]["symbol"]
+    else:
+        return " "
 
-    vendor: int
-    device: int
-    variant: int
+
+def language_description(variant):
+    return ", " .join([LANGUAGES[language]["name"] for language in variant["languages"]])
 
 
 def device_picker(stdscr):
@@ -264,11 +332,17 @@ def device_picker(stdscr):
 
             for variant_index, variant in enumerate(variants):
                 name = variant["name"]
+                languages = language_symbol(variant)
+                # languages = "".join([LANGUAGES[language] for language in variant["languages"]])
                 if is_section_active and device_index == selection.device and variant_index == selection.variant:
                     name = "-> " + name
                 else:
                     name = "   " + name
-                title += name.ljust(16)
+                # While it might seem like a good idea to use `ljust` here to ensure these are consistent lengths
+                # we're instead relying on `name` being of equal length to avoid bumping into Python's terrible
+                # handling of multi-codepoint emoji.
+                # In the future, we might want to use 'grapheme' which provides suport for this.
+                title += f"{name} {languages}  "
 
             stdscr.addstr(y_pos + device_index, 0, "  " + title)
 
@@ -302,8 +376,7 @@ def device_picker(stdscr):
         # Display the description for the current selection.
         if "description" in profile:
             stdscr.addstr(height-2, 0, profile["description"])
-        if "description" in variant:
-            stdscr.addstr(height-1, 0, variant["description"])
+        stdscr.addstr(height-1, 0, language_description(variant))
 
         # Get and handle input.
         key = stdscr.getch()
