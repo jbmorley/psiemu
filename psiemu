@@ -278,13 +278,13 @@ PROFILES = [
 ]
 
 LANGUAGES = {
-    "de-DE": {"name": "German", "symbol": "🇩🇪"},
-    "en-GB": {"name": "British English", "symbol": "🇬🇧"},
-    "en-US": {"name": "American English", "symbol": "🇺🇸"},
-    "es-ES": {"name": "Spanish", "symbol": "🇪🇸"},
-    "fr-FR": {"name": "French", "symbol": "🇫🇷"},
-    "it-IT": {"name": "Italian", "symbol": "🇮🇹"},
-    "ru-RU": {"name": "Russian", "symbol": "🇷🇺"},
+    "de-DE": {"name": "German", "symbol": "de"},
+    "en-GB": {"name": "British English", "symbol": "en"},
+    "en-US": {"name": "American English", "symbol": "us"},
+    "es-ES": {"name": "Spanish", "symbol": "es"},
+    "fr-FR": {"name": "French", "symbol": "fr"},
+    "it-IT": {"name": "Italian", "symbol": "it"},
+    "ru-RU": {"name": "Russian", "symbol": "ru"},
 }
 
 NOTES = """
@@ -349,7 +349,7 @@ def run_mame(profile):
 def language_symbol(variant):
     languages = variant["languages"]
     if len(languages) > 1:
-        return "🌎"
+        return "+ "
     elif len(languages) == 1:
         return LANGUAGES[languages[0]]["symbol"]
     else:
