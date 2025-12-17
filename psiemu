@@ -162,15 +162,31 @@ PROFILES = [
             },
     
             {
-                "id": "psion3mx",
                 "title": "Series 3mx",
                 "resolution": (480, 160),
                 "variants": [
                     {
                         "name": "V6.16F",
+                        "id": "psion3mx",
                         "bios": "616f",
                         "languages": [
                             "en-GB",
+                        ],
+                    },
+                    {
+                        "name": "V6.17F",
+                        "id": "psion3mx_nl",
+                        "bios": "617f",
+                        "languages": [
+                            "nl-NL",
+                        ],
+                    },
+                    {
+                        "name": "V6.20F",
+                        "id": "psion3mx_fr",
+                        "bios": "620f",
+                        "languages": [
+                            "fr-FR",
                         ],
                     },
                 ]
@@ -292,6 +308,7 @@ LANGUAGES = {
     "es-ES": {"name": "Spanish", "symbol": "es"},
     "fr-FR": {"name": "French", "symbol": "fr"},
     "it-IT": {"name": "Italian", "symbol": "it"},
+    "nl-NL": {"name": "Dutch", "symbol": "nl"},
     "ru-RU": {"name": "Russian", "symbol": "ru"},
 }
 
