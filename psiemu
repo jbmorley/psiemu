@@ -301,7 +301,7 @@ def run_mame(profile):
         "-window",
         "-nomaximize",
         "-skip_gameinfo",
-        "-rompath", os.path.expanduser("~/Projects/Psion-ROM/build"),
+        "-rompath", os.environ["PSIEMU_ROM_PATH"],
         profile["id"],
     ]
 
