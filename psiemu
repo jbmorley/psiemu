@@ -312,10 +312,9 @@ LANGUAGES = {
     "ru-RU": {"name": "Russian", "symbol": "ru"},
 }
 
-NOTES = """
-Special keys:
+NOTES = """Special keys:
 
-- Menu -> Shift+F11
+- Menu -> F11 (Shift + F11 on macOS)
 - Psion -> Alt
 - Help -> F10
 
