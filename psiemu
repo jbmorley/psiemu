@@ -1,0 +1,282 @@
+#!/usr/bin/env python3
+
+import argparse
+import curses
+import os
+import subprocess
+
+
+PROFILES = {
+    
+    "series3": {
+        "id": "psion3",
+        "title": "Series 3",
+        "resolution": (240, 80),
+        "scale": 2,
+        "bios": "191f",
+        "variants": [
+            {
+                "name": "V1.91F/MULTI",
+                "bios": "191f",
+                "description": "English, French, German, Spanish, and Italian",
+            },
+            {
+                "name": "V1.80F/MULTI",
+                "bios": "180f",
+                "description": "English, French, German, Italian",
+            },
+        ]
+    },
+
+    "series3a": {
+        "id": "psion3a",
+        "title": "Series 3a (1 MB ROM)",
+        "description": "1MB ROM variant of the Series 3a",
+        "resolution": (480, 160),
+        "variants": [
+            {
+                "name": "V3.22F/ENG",
+                "bios": "322f",
+                "description": "English",
+            },
+        ],
+    },
+
+    "series3a2": {
+        "id": "psion3a",
+        "title": "Series 3a (2 MB ROM)",
+        "description": "2MB ROM variant of the Series 3a including Spell and Patience",
+        "resolution": (480, 160),
+        "variants": [
+            {
+                "name": "V3.40F/ENG",
+                "id": "psion3a2",
+                "bios": "340f",
+                "description": "English"
+            },
+            {
+                "name": "V3.40F/ITA",
+                "id": "psion3a2_it",
+                "bios": "340f",
+                "description": "Italian",
+            },
+            {
+                "name": "V3.40F/USA",
+                "id": "psion3a2_us",
+                "bios": "340f",
+                "description": "French",
+            },
+            {
+                "name": "V3.41F/DEU",
+                "id": "psion3a2_de",
+                "bios": "341f",
+                "description": "German",
+            },
+            {
+                "name": "V3.43F/RUS",
+                "id": "psion3a2_ru",
+                "bios": "343f",
+                "description": "Russian",
+            },
+        ],
+    },
+    
+    "series3c": {
+        "id": "psion3c",
+        "title": "Series 3c",
+        "resolution": (480, 160),
+        "variants": [
+            {
+                "name": "V5.20F/ENG",
+                "bios": "520f",
+            },
+        ],
+    },
+    
+    "series3mx": {
+        "id": "psion3mx",
+        "title": "Series 3mx",
+        "resolution": (480, 160),
+        "variants": [
+            {
+                "name": "V6.16F/ENG",
+                "bios": "616f",
+            },
+        ]
+    },
+    
+    "siena": {
+        "id": "siena",
+        "title": "Siena",
+        "resolution": (240, 160),
+        "variants": [
+            {
+                "name": "V4.20F/ENG",
+                "bios": "420f",
+            },
+        ]
+    },
+
+    "workabout": {
+        "id": "psionwa",
+        "title": "Workabout",
+        "resolution": (240, 100),
+        "variants": [
+            {
+                "name": "V2.40F",
+                "bios": "240f"
+            },
+            {
+                "name": "V1.00F",
+                "bios": "100f",
+            },
+        ],
+    },
+   
+    "workaboutmx": {
+        "id": "psionwamx",
+        "title": "Workabout MX",
+        "resolution": (240, 100),
+        "variants": [
+            {
+                "name": "V7.20F",
+                "bios": "720f",
+            },
+        ],
+    },
+}
+
+NOTES = """
+Special keys:
+
+- Menu -> Shift+F11
+- Psion -> Alt
+- Help -> F10
+
+Silkscreen buttons:
+
+- System -> F1
+- Data -> F2
+- Word -> F3
+- Agenda -> F4
+- Time -> F5
+- World -> F6
+- Calc -> F7
+- Sheet -> F8
+
+"""
+
+
+def device_picker(stdscr):
+    curses.use_default_colors()
+    curses.curs_set(0)  # Hide the cursor.
+
+    identifiers = list(PROFILES.keys())
+
+    current_idx = 0
+    current_variant = 0
+    
+    while True:
+
+        # Clear the screen and print the title.
+        stdscr.clear()
+        stdscr.addstr(0, 0, "Psion")
+
+        # Get the current dimensions.
+        (height, width) = stdscr.getmaxyx()
+        
+        # Render the list.
+        for idx, identifier in enumerate(identifiers):
+            y_pos = idx + 2  # Offset by 2 to account for the title.
+            profile = PROFILES[identifier]
+           
+            title = profile["title"].ljust(22)
+            variants = profile["variants"]
+            title = title + " ".join(("-> " + variant[1]["name"].ljust(12) if variant[0] == current_variant and idx == current_idx else "   " + variant[1]["name"].ljust(12)) for variant in enumerate(variants))
+
+            stdscr.addstr(y_pos, 0, "  " + title)
+
+        # Current selection.
+        profile = PROFILES[identifiers[current_idx]]
+        variant = profile["variants"][current_variant]
+
+        # Display the description.
+        if "description" in profile:
+            stdscr.addstr(height-2, 0, profile["description"])
+        if "description" in variant:
+            stdscr.addstr(height-1, 0, variant["description"])
+
+        # Get input.
+        key = stdscr.getch()
+        if key == curses.KEY_UP and current_idx > 0:
+            current_idx -= 1
+            current_variant = 0
+        elif key == curses.KEY_DOWN and current_idx < len(identifiers) - 1:
+            current_idx += 1
+            current_variant = 0
+        elif key == curses.KEY_LEFT:
+            if current_variant > 0:
+                current_variant -= 1
+        elif key == curses.KEY_RIGHT:
+            variants = profile["variants"]
+            if current_variant < len(variants) - 1:
+                current_variant += 1
+        elif key == ord('\n'):
+            profile["bios"] = variant["bios"]
+            if "id" in variant:
+                profile["id"] = variant["id"]
+            return profile
+        elif key == 27 or key == ord('q'):
+            return None
+
+
+def show_device_picker():
+    os.environ.setdefault('ESCDELAY', '25')
+    return curses.wrapper(lambda stdscr: device_picker(stdscr))
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("profile", nargs="?", choices=PROFILES.keys())
+    options = parser.parse_args()
+
+    identifier = options.profile
+    if identifier is not None:
+        profile = PROFILES[identifier]
+    else:
+        profile = show_device_picker()
+
+    if profile is None:
+        exit()
+
+    command = [
+        "mame",
+        "-window",
+        "-nomaximize",
+        "-skip_gameinfo",
+        "-rompath", os.path.expanduser("~/Projects/Psion-ROM/build"),
+        profile["id"],
+    ]
+    if "resolution" in profile:
+        device_scale = profile["scale"] if "scale" in profile else 1
+        scale = 2 * device_scale  # TODO: Detect display scale.
+        (width, height) = profile['resolution']
+        command.extend([
+            "-prescale", "%s" % (scale, ),
+            "-resolution", "%dx%d" % (width * scale, height * scale),
+        ])
+    if "bios" in profile:
+        command.extend([
+            "-bios", profile["bios"],
+        ])
+
+    print(command)
+
+    subprocess.Popen(command,
+                     start_new_session=True,
+                     stdout=subprocess.DEVNULL)
+    print(NOTES)
+
+
+if __name__ == "__main__":
+    main()
