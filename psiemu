@@ -39,7 +39,6 @@ PROFILES = [
                 "title": "Series 3",
                 "resolution": (240, 80),
                 "scale": 2,
-                "bios": "191f",
                 "variants": [
                     {
                         "name": "V1.91F",
@@ -66,6 +65,23 @@ PROFILES = [
             },
 
             {
+                "id": "psion3s",
+                "title": "Series 3s",
+                "description": "Series 3 variant with built-in Sheet program",
+                "resolution": (240, 80),
+                "scale": 2,
+                "variants": [
+                    {
+                        "name": "V1.91F",
+                        "bios": "191f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                ],
+            },
+
+            {
                 "id": "psion3a",
                 "title": "Series 3a (1 MB ROM)",
                 "description": "1MB ROM variant of the Series 3a",
@@ -84,7 +100,7 @@ PROFILES = [
             {
                 "id": "psion3a",
                 "title": "Series 3a (2 MB ROM)",
-                "description": "2MB ROM variant of the Series 3a including Spell and Patience",
+                "description": "2MB ROM variant of the Series 3a with built-in Spell and Patience programs",
                 "resolution": (480, 160),
                 "variants": [
                     {
