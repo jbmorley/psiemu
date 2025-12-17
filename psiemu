@@ -210,6 +210,13 @@ PROFILES = [
                             "en-GB",
                         ],
                     },
+                    {
+                        "name": "V0.24B",
+                        "bios": "024b",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
                 ],
             },
    
