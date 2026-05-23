@@ -34,5 +34,3 @@ WHEEL=`ls dist/psiemu-*.whl`
 
 pip3 install "$WHEEL"
 which psiemu
-# changes version
-# changes notes
