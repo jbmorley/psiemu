@@ -30,7 +30,7 @@ ROOT_DIRECTORY="$SCRIPTS_DIRECTORY/.."
 CHANGES_SCRIPT="$ROOT_DIRECTORY/changes"
 RELEASE_SCRIPT="$ROOT_DIRECTORY/examples/gh-release.sh"
 
-WHEEL=`ls dist/changes_semver-*.whl`
+WHEEL=`ls dist/psiemu-*.whl`
 
 pip3 install "$WHEEL"
 which psiemu
