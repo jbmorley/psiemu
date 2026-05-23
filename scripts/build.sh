@@ -28,7 +28,7 @@ set -u
 ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/null && pwd )"
 BUILD_DIRECTORY="$ROOT_DIRECTORY/dist"
 
-CHANGES_SCRIPT="$ROOT_DIRECTORY/changes"
+CHANGES_SCRIPT="pipenv run changes"
 
 # Configure the path.
 PATH=$PATH:"$ROOT_DIRECTORY"

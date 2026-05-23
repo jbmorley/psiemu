@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-# Copyright (c) 2021-2026 Jason Morley
+# Copyright (c) 2025 Jason Morley
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +20,4 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-NAME=`basename "$0"`
-
-export PIPENV_PIPFILE="${DIRECTORY}/Pipfile"
-PYTHONPATH="$DIRECTORY" pipenv run python3 -m src "$@"
+from . import *
