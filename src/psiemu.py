@@ -1,0 +1,512 @@
+#!/usr/bin/env python3
+
+# Copyright (c) 2025 Jason Morley
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+import argparse
+import curses
+import os
+import subprocess
+
+from dataclasses import dataclass
+
+
+PROFILES = [
+
+    {
+        "name": "Psion",
+        "devices": [
+            
+            {
+                "id": "psion3",
+                "title": "Series 3",
+                "resolution": (240, 80),
+                "scale": 2,
+                "variants": [
+                    {
+                        "name": "V1.91F",
+                        "bios": "191f",
+                        "languages": [
+                            "en-GB",
+                            "fr-FR",
+                            "de-DE",
+                            "es-ES",
+                            "it-IT",
+                        ]
+                    },
+                    {
+                        "name": "V1.80F",
+                        "bios": "180f",
+                        "languages": [
+                            "en-GB",
+                            "fr-FR",
+                            "de-DE",
+                            "it-IT",
+                        ],
+                    },
+                ]
+            },
+
+            {
+                "id": "psion3s",
+                "title": "Series 3s",
+                "description": "Series 3 variant with built-in Sheet program",
+                "resolution": (240, 80),
+                "scale": 2,
+                "variants": [
+                    {
+                        "name": "V1.91F",
+                        "bios": "191f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                ],
+            },
+
+            {
+                "id": "psion3a",
+                "title": "Series 3a (1 MB ROM)",
+                "description": "1MB ROM variant of the Series 3a",
+                "resolution": (480, 160),
+                "variants": [
+                    {
+                        "name": "V3.22F",
+                        "bios": "322f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                ],
+            },
+
+            {
+                "id": "psion3a",
+                "title": "Series 3a (2 MB ROM)",
+                "description": "2MB ROM variant of the Series 3a with built-in Spell and Patience programs",
+                "resolution": (480, 160),
+                "variants": [
+                    {
+                        "name": "V3.40F",
+                        "id": "psion3a2",
+                        "bios": "340f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                    {
+                        "name": "V3.40F",
+                        "id": "psion3a2_it",
+                        "bios": "340f",
+                        "languages": [
+                            "it-IT",
+                        ],
+                    },
+                    {
+                        "name": "V3.40F",
+                        "id": "psion3a2_us",
+                        "bios": "340f",
+                        "languages": [
+                            "en-US",
+                        ],
+                    },
+                    {
+                        "name": "V3.41F",
+                        "id": "psion3a2_de",
+                        "bios": "341f",
+                        "languages": [
+                            "de-DE",
+                        ],
+                    },
+                    {
+                        "name": "V3.43F",
+                        "id": "psion3a2_ru",
+                        "bios": "343f",
+                        "languages": [
+                            "ru-RU",
+                        ],
+                    },
+                ],
+            },
+    
+            {
+                "id": "psion3c",
+                "title": "Series 3c",
+                "resolution": (480, 160),
+                "variants": [
+                    {
+                        "name": "V5.20F",
+                        "bios": "520f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                ],
+            },
+    
+            {
+                "title": "Series 3mx",
+                "resolution": (480, 160),
+                "variants": [
+                    {
+                        "name": "V6.16F",
+                        "id": "psion3mx",
+                        "bios": "616f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                    {
+                        "name": "V6.17F",
+                        "id": "psion3mx_nl",
+                        "bios": "617f",
+                        "languages": [
+                            "nl-NL",
+                        ],
+                    },
+                    {
+                        "name": "V6.20F",
+                        "id": "psion3mx_fr",
+                        "bios": "620f",
+                        "languages": [
+                            "fr-FR",
+                        ],
+                    },
+                ]
+            },
+    
+            {
+                "title": "Siena",
+                "resolution": (240, 160),
+                "variants": [
+                    {
+                        "name": "V4.20F",
+                        "id": "siena",
+                        "bios": "420f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                    {
+                        "name": "V4.21F",
+                        "id": "siena_fr",
+                        "bios": "421f",
+                        "languages": [
+                            "fr-FR",
+                        ],
+                    },
+                ]
+            },
+
+            {
+                "id": "psionwa",
+                "title": "Workabout",
+                "resolution": (240, 100),
+                "variants": [
+                    {
+                        "name": "V2.40F",
+                        "bios": "240f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                    {
+                        "name": "V1.00F",
+                        "bios": "100f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                    {
+                        "name": "V0.24B",
+                        "bios": "024b",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                ],
+            },
+   
+            {
+                "id": "psionwamx",
+                "title": "Workabout MX",
+                "resolution": (240, 100),
+                "variants": [
+                    {
+                        "name": "V7.20F",
+                        "bios": "720f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    },
+                ],
+            },
+        ],
+    },
+
+    {
+        "name": "Acorn",
+        "devices": [
+
+            {
+                "id": "pocketbk",
+                "title": "Acorn Pocket Book",
+                "resolution": (240, 80),
+                "scale": 2,
+                "variants": [
+                    {
+                        "name": "V1.91F",
+                        "bios": "191f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    }
+                ]
+            },
+
+            {
+                "id": "pocketbk2",
+                "title": "Acorn Pocket Book II",
+                "resolution": (480, 160),
+                "variants": [
+                    {
+                        "name": "V1.30F",
+                        "bios": "130f",
+                        "languages": [
+                            "en-GB",
+                        ],
+                    }
+                ]
+            },
+            
+        ],
+    },
+    
+]
+
+LANGUAGES = {
+    "de-DE": {"name": "German", "symbol": "de"},
+    "en-GB": {"name": "British English", "symbol": "en"},
+    "en-US": {"name": "American English", "symbol": "us"},
+    "es-ES": {"name": "Spanish", "symbol": "es"},
+    "fr-FR": {"name": "French", "symbol": "fr"},
+    "it-IT": {"name": "Italian", "symbol": "it"},
+    "nl-NL": {"name": "Dutch", "symbol": "nl"},
+    "ru-RU": {"name": "Russian", "symbol": "ru"},
+}
+
+NOTES = """Special keys:
+
+- Menu -> F11 (Shift + F11 on macOS)
+- Psion -> Alt
+- Help -> F10
+
+Silkscreen buttons:
+
+- System -> F1
+- Data -> F2
+- Word -> F3
+- Agenda -> F4
+- Time -> F5
+- World -> F6
+- Calc -> F7
+- Sheet -> F8
+
+"""
+
+
+@dataclass
+class Selection:
+
+    vendor: int
+    device: int
+    variant: int
+
+
+def mame_command(profile):
+    
+    command = [
+        "mame",
+        "-window",
+        "-nomaximize",
+        "-skip_gameinfo",
+        "-rompath", os.environ["PSIEMU_ROM_PATH"],
+        profile["id"],
+    ]
+
+    if "resolution" in profile:
+        device_scale = profile["scale"] if "scale" in profile else 1
+        scale = 2 * device_scale  # TODO: Detect display scale.
+        (width, height) = profile['resolution']
+        command.extend([
+            "-prescale", "%s" % (scale, ),
+            "-resolution", "%dx%d" % (width * scale, height * scale),
+        ])
+
+    if "bios" in profile:
+        command.extend([
+            "-bios", profile["bios"],
+        ])
+
+    return command
+
+
+def run_mame(profile):
+    subprocess.Popen(mame_command(profile),
+                     start_new_session=True,
+                     stdout=subprocess.DEVNULL,
+                     stderr=subprocess.DEVNULL)
+
+
+def language_symbol(variant):
+    languages = variant["languages"]
+    if len(languages) > 1:
+        return "+ "
+    elif len(languages) == 1:
+        return LANGUAGES[languages[0]]["symbol"]
+    else:
+        return " "
+
+
+def language_description(variant):
+    return ", " .join([LANGUAGES[language]["name"] for language in variant["languages"]])
+
+
+def device_picker(stdscr):
+
+    def render_device_section(devices, is_section_active, y_pos, selection):
+
+        for device_index, profile in enumerate(devices):
+            title = profile["title"].ljust(22)
+            variants = profile["variants"]
+
+            for variant_index, variant in enumerate(variants):
+                name = variant["name"]
+                languages = language_symbol(variant)
+                # languages = "".join([LANGUAGES[language] for language in variant["languages"]])
+                if is_section_active and device_index == selection.device and variant_index == selection.variant:
+                    name = "-> " + name
+                else:
+                    name = "   " + name
+                # While it might seem like a good idea to use `ljust` here to ensure these are consistent lengths
+                # we're instead relying on `name` being of equal length to avoid bumping into Python's terrible
+                # handling of multi-codepoint emoji.
+                # In the future, we might want to use 'grapheme' which provides suport for this.
+                title += f"{name} {languages}  "
+
+            stdscr.addstr(y_pos + device_index, 0, "  " + title)
+
+        return y_pos + len(devices)
+
+    curses.use_default_colors()
+    curses.curs_set(0)
+
+    selection = Selection(0, 0, 0)
+    
+    while True:
+
+        (height, width) = stdscr.getmaxyx()
+        stdscr.clear()
+
+        offset = 0
+        for vendor_index, vendor in enumerate(PROFILES):
+            stdscr.addstr(offset, 0, vendor["name"])
+            offset += render_device_section(devices=vendor["devices"],
+                                            is_section_active=vendor_index == selection.vendor,
+                                            y_pos=offset + 2,
+                                            selection=selection)
+            offset += 1
+
+        # Current selection.
+        vendor = PROFILES[selection.vendor]
+        devices = vendor["devices"]
+        profile = vendor["devices"][selection.device]
+        variant = profile["variants"][selection.variant]
+
+        # Fixup the profile.
+        profile["bios"] = variant["bios"]
+        if "id" in variant:
+            profile["id"] = variant["id"]
+
+        # Get the command.
+        command = mame_command(profile)
+
+        # Display the description for the current selection.
+        stdscr.hline(height - 5, 0, curses.ACS_HLINE, width)
+        if "description" in profile:
+            stdscr.addstr(height-4, 0, profile["description"])
+        stdscr.addstr(height-3, 0, language_description(variant))
+        stdscr.addstr(height-2, 0, " ".join(command))
+
+        # Get and handle input.
+        key = stdscr.getch()
+        if key == curses.KEY_UP:
+
+            if selection.device > 0:
+                selection.device -= 1
+                selection.variant = 0
+            elif selection.vendor > 0:
+                selection.vendor -= 1
+                selection.device = len(PROFILES[selection.vendor]["devices"]) - 1
+                selection.variant = 0
+                
+        elif key == curses.KEY_DOWN:
+
+            if selection.device < len(devices) - 1:
+                selection.device += 1
+                selection.variant = 0
+            elif selection.vendor < len(PROFILES) - 1:
+                selection.vendor += 1
+                selection.device = 0
+                selection.variant = 0
+
+        elif key == curses.KEY_LEFT:
+            
+            if selection.variant > 0:
+                selection.variant -= 1
+
+        elif key == curses.KEY_RIGHT:
+
+            variants = profile["variants"]
+            if selection.variant < len(variants) - 1:
+                selection.variant += 1
+
+        elif key == ord('\n'):
+
+            profile["bios"] = variant["bios"]
+            if "id" in variant:
+                profile["id"] = variant["id"]
+            run_mame(profile)
+
+        elif key == 27 or key == ord('q'):
+            
+            return None
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    options = parser.parse_args()
+
+    os.environ.setdefault('ESCDELAY', '25')
+    curses.wrapper(lambda stdscr: device_picker(stdscr))
+
+
+if __name__ == "__main__":
+    main()
