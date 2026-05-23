@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# Copyright (c) 2021-2026 Jason Morley
+# Copyright (c) 2025 Jason Morley
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +18,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-NAME=`basename "$0"`
+import os
+import sys
 
-export PIPENV_PIPFILE="${DIRECTORY}/Pipfile"
-PYTHONPATH="$DIRECTORY" pipenv run python3 -m src "$@"
+if not __package__:
+    # Make CLI runnable from source tree with
+    #    python src/package
+    package_source_path = os.path.dirname(os.path.dirname(__file__))
+    sys.path.insert(0, package_source_path)
+
+
+if __name__ == "__main__":
+    from src.psiemu import main
+    main()
