@@ -20,8 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ROOT_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+SOURCE_DIRECTORY="$ROOT_DIRECTORY/src"
 NAME=`basename "$0"`
 
-export PIPENV_PIPFILE="${DIRECTORY}/Pipfile"
-PYTHONPATH="$DIRECTORY" pipenv run python3 -m src "$@"
+export PIPENV_PIPFILE="$ROOT_DIRECTORY/Pipfile"
+PYTHONPATH="$SOURCE_DIRECTORY" pipenv run python3 -m psiemu "$@"

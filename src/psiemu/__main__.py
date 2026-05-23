@@ -29,5 +29,5 @@ if not __package__:
 
 
 if __name__ == "__main__":
-    from src.psiemu import main
+    from psiemu.psiemu import main
     main()
