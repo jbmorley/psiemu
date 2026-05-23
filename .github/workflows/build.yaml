@@ -70,7 +70,7 @@ jobs:
       run: scripts/release.sh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      if: ${{ github.ref == 'refs/heads/main' }}
+      # if: ${{ github.ref == 'refs/heads/main' }}
 
   publish-to-pypi:
     if: ${{ (github.ref == 'refs/heads/main') && (needs.build.outputs.needs_release == 'true') }}
