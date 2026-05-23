@@ -13,4 +13,4 @@ dependencies = []
 dynamic = ["version"]
 
 [project.scripts]
-psiemu = "src.psiemu:main"
+psiemu = "psiemu.psiemu:main"
