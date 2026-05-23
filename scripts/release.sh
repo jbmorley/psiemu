@@ -29,11 +29,6 @@ SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd 
 ROOT_DIRECTORY="$SCRIPTS_DIRECTORY/.."
 RELEASE_SCRIPT="$SCRIPTS_DIRECTORY/gh-release.sh"
 
-# Configure the path.
-PATH=$PATH:"$ROOT_DIRECTORY"
-
-CHANGES_SCRIPT="pipenv run changes"
-
 WHEEL=`ls dist/psiemu-*.whl`
 
-"$CHANGES_SCRIPT" --verbose release --skip-if-empty --push --exec "$RELEASE_SCRIPT" "$WHEEL"
+pipenv run changes --verbose release --skip-if-empty --push --exec "$RELEASE_SCRIPT" "$WHEEL"
