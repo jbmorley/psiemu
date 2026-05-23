@@ -60,9 +60,6 @@ jobs:
         name: python-package-distributions
         path: dist/
 
-    # - name: Run tests
-    #   run: scripts/test.sh
-
     - name: Test wheel
       run: scripts/test_wheel.sh
 
