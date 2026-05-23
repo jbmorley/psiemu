@@ -12,8 +12,5 @@ authors = [
 dependencies = []
 dynamic = ["version"]
 
-# [tool.setuptools.package-data]
-# changes_semver = ["templates/*"]
-
 [project.scripts]
 psiemu = "src.psiemu:main"

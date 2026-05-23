@@ -6,10 +6,6 @@ verify_ssl = true
 
 [packages]
 
-fastcommand = "*"
-jinja2 = "*"
-pyyaml = "*"
-
 [dev-packages]
 build = "*"
 changes-semver = "*"
