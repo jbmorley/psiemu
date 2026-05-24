@@ -11,6 +11,18 @@
     scale: 2
     variants:
 
+    - bios: 177f
+      languages:
+      - en-GB
+      name: V1.77F
+      roms:
+      - name: 3504-3001-01_19-11-91v1.77f_eng.bin
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.77f_eng/s3_v1.77f_eng1.bin
+        md5: f45adbb8e951ac1be922279197baf6c6
+      - name: 3504-3002-01_19-11-91v1.77f_eng.bin
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.77f_eng/s3_v1.77f_eng2.bin
+        md5: 3bf167eeb8f41d88981ed12632414e1d
+
     - bios: 191f
       languages:
       - en-GB
