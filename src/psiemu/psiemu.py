@@ -38,8 +38,15 @@ PSIEMU_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 RESOURCES_DIRECTORY = os.path.join(PSIEMU_DIRECTORY, "resources")
 PROFILES_PATH = os.path.join(RESOURCES_DIRECTORY, "profiles.yaml")
 
+CONFIG_DIRECTORY = os.path.expanduser("~/.config/psiemu")
+NVRAM_DIRECTORY = os.path.join(CONFIG_DIRECTORY, "nvram")
+CFG_DIRECTORY = os.path.join(CONFIG_DIRECTORY, "cfg")
+
 CACHE_DIRECTORY = os.path.expanduser("~/.cache/psiemu")
 ROM_DIRECTORY = os.path.join(CACHE_DIRECTORY, "roms")
+
+os.makedirs(CONFIG_DIRECTORY, exist_ok=True)
+os.makedirs(CACHE_DIRECTORY, exist_ok=True)
 
 LANGUAGES = {
     "de-DE": {"name": "German", "symbol": "de"},
@@ -124,6 +131,8 @@ def mame_command(profile):
         "-nomaximize",
         "-skip_gameinfo",
         "-rompath", ROM_DIRECTORY,
+        "-cfg_directory", CFG_DIRECTORY,
+        "-nvram_directory", NVRAM_DIRECTORY,
         profile["id"],
     ]
 
@@ -225,11 +234,11 @@ def device_picker(stdscr):
         command = mame_command(profile)
 
         # Display the description for the current selection.
-        stdscr.hline(height - 5, 0, curses.ACS_HLINE, width)
+        stdscr.hline(height - 6, 0, curses.ACS_HLINE, width)
         if "description" in profile:
-            stdscr.addstr(height-4, 0, profile["description"])
-        stdscr.addstr(height-3, 0, language_description(variant))
-        stdscr.addstr(height-2, 0, " ".join(command))
+            stdscr.addstr(height-5, 0, profile["description"])
+        stdscr.addstr(height-4, 0, language_description(variant))
+        stdscr.addstr(height-3, 0, " ".join(command))
 
         # Get and handle input.
         key = stdscr.getch()
