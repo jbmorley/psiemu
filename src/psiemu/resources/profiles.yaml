@@ -181,27 +181,36 @@
 #       - en-GB
 #       name: V7.20F
 #
-# # Acorn
-# - name: Acorn
-#   devices:
-#   - id: pocketbk
-#     resolution:
-#     - 240
-#     - 80
-#     scale: 2
-#     title: Acorn Pocket Book
-#     variants:
-#     - bios: 191f
-#       languages:
-#       - en-GB
-#       name: V1.91F
-#   - id: pocketbk2
-#     resolution:
-#     - 480
-#     - 160
-#     title: Acorn Pocket Book II
-#     variants:
-#     - bios: 130f
-#       languages:
-#       - en-GB
-#       name: V1.30F
+# Acorn
+- name: Acorn
+  devices:
+
+  - id: pocketbk
+    title: Acorn Pocket Book
+    resolution:
+    - 240
+    - 80
+    scale: 2
+    variants:
+    - bios: 191f
+      languages:
+      - en-GB
+      name: V1.91F
+      roms:
+      - name: pb_v1.91f_acn.bin
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/pb_v1.91f_acn/pb_v1.91f_acn.bin
+        md5: 2e3fd0717451d7621b664d7eb85e89be
+      - name: acspell.bin
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/pb_v1.91f_acn/acspell.bin
+        md5: 4ecb448d5828855dbeaf223cef5fe346
+
+  # - id: pocketbk2
+  #   title: Acorn Pocket Book II
+  #   resolution:
+  #   - 480
+  #   - 160
+  #   variants:
+  #   - bios: 130f
+  #     languages:
+  #     - en-GB
+  #     name: V1.30F
