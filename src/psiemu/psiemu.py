@@ -124,7 +124,7 @@ def hash(path):
 
 
 def mame_command(profile):
-    
+
     command = [
         "mame",
         "-window",
@@ -204,7 +204,7 @@ def device_picker(stdscr):
     curses.curs_set(0)
 
     selection = Selection(0, 0, 0)
-    
+
     while True:
 
         (height, width) = stdscr.getmaxyx()
@@ -233,13 +233,6 @@ def device_picker(stdscr):
         # Get the command.
         command = mame_command(profile)
 
-        # Display the description for the current selection.
-        stdscr.hline(height - 6, 0, curses.ACS_HLINE, width)
-        if "description" in profile:
-            stdscr.addstr(height-5, 0, profile["description"])
-        stdscr.addstr(height-4, 0, language_description(variant))
-        stdscr.addstr(height-3, 0, " ".join(command))
-
         # Get and handle input.
         key = stdscr.getch()
         if key == curses.KEY_UP:
@@ -251,7 +244,7 @@ def device_picker(stdscr):
                 selection.vendor -= 1
                 selection.device = len(PROFILES[selection.vendor]["devices"]) - 1
                 selection.variant = 0
-                
+
         elif key == curses.KEY_DOWN:
 
             if selection.device < len(devices) - 1:
@@ -263,7 +256,7 @@ def device_picker(stdscr):
                 selection.variant = 0
 
         elif key == curses.KEY_LEFT:
-            
+
             if selection.variant > 0:
                 selection.variant -= 1
 
@@ -281,7 +274,7 @@ def device_picker(stdscr):
             run_mame(profile)
 
         elif key == 27 or key == ord('q'):
-            
+
             return None
 
 
