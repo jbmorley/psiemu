@@ -9,8 +9,14 @@ license = "MIT"
 authors = [
   {name = "Jason Morley", email = "hello@jbmorley.co.uk"}
 ]
-dependencies = []
+dependencies = [
+  "pyyaml",
+  "requests",
+]
 dynamic = ["version"]
+
+[tool.setuptools.package-data]
+psiemu = ["resources/*"]
 
 [project.scripts]
 psiemu = "psiemu.psiemu:main"

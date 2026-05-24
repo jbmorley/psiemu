@@ -22,284 +22,24 @@
 
 import argparse
 import curses
+import hashlib
+import logging
 import os
+import shutil
 import subprocess
+import tempfile
+
+import requests
+import yaml
 
 from dataclasses import dataclass
 
+PSIEMU_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+RESOURCES_DIRECTORY = os.path.join(PSIEMU_DIRECTORY, "resources")
+PROFILES_PATH = os.path.join(RESOURCES_DIRECTORY, "profiles.yaml")
 
-PROFILES = [
-
-    {
-        "name": "Psion",
-        "devices": [
-            
-            {
-                "id": "psion3",
-                "title": "Series 3",
-                "resolution": (240, 80),
-                "scale": 2,
-                "variants": [
-                    {
-                        "name": "V1.91F",
-                        "bios": "191f",
-                        "languages": [
-                            "en-GB",
-                            "fr-FR",
-                            "de-DE",
-                            "es-ES",
-                            "it-IT",
-                        ]
-                    },
-                    {
-                        "name": "V1.80F",
-                        "bios": "180f",
-                        "languages": [
-                            "en-GB",
-                            "fr-FR",
-                            "de-DE",
-                            "it-IT",
-                        ],
-                    },
-                ]
-            },
-
-            {
-                "id": "psion3s",
-                "title": "Series 3s",
-                "description": "Series 3 variant with built-in Sheet program",
-                "resolution": (240, 80),
-                "scale": 2,
-                "variants": [
-                    {
-                        "name": "V1.91F",
-                        "bios": "191f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                ],
-            },
-
-            {
-                "id": "psion3a",
-                "title": "Series 3a (1 MB ROM)",
-                "description": "1MB ROM variant of the Series 3a",
-                "resolution": (480, 160),
-                "variants": [
-                    {
-                        "name": "V3.22F",
-                        "bios": "322f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                ],
-            },
-
-            {
-                "id": "psion3a",
-                "title": "Series 3a (2 MB ROM)",
-                "description": "2MB ROM variant of the Series 3a with built-in Spell and Patience programs",
-                "resolution": (480, 160),
-                "variants": [
-                    {
-                        "name": "V3.40F",
-                        "id": "psion3a2",
-                        "bios": "340f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                    {
-                        "name": "V3.40F",
-                        "id": "psion3a2_it",
-                        "bios": "340f",
-                        "languages": [
-                            "it-IT",
-                        ],
-                    },
-                    {
-                        "name": "V3.40F",
-                        "id": "psion3a2_us",
-                        "bios": "340f",
-                        "languages": [
-                            "en-US",
-                        ],
-                    },
-                    {
-                        "name": "V3.41F",
-                        "id": "psion3a2_de",
-                        "bios": "341f",
-                        "languages": [
-                            "de-DE",
-                        ],
-                    },
-                    {
-                        "name": "V3.43F",
-                        "id": "psion3a2_ru",
-                        "bios": "343f",
-                        "languages": [
-                            "ru-RU",
-                        ],
-                    },
-                ],
-            },
-    
-            {
-                "id": "psion3c",
-                "title": "Series 3c",
-                "resolution": (480, 160),
-                "variants": [
-                    {
-                        "name": "V5.20F",
-                        "bios": "520f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                ],
-            },
-    
-            {
-                "title": "Series 3mx",
-                "resolution": (480, 160),
-                "variants": [
-                    {
-                        "name": "V6.16F",
-                        "id": "psion3mx",
-                        "bios": "616f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                    {
-                        "name": "V6.17F",
-                        "id": "psion3mx_nl",
-                        "bios": "617f",
-                        "languages": [
-                            "nl-NL",
-                        ],
-                    },
-                    {
-                        "name": "V6.20F",
-                        "id": "psion3mx_fr",
-                        "bios": "620f",
-                        "languages": [
-                            "fr-FR",
-                        ],
-                    },
-                ]
-            },
-    
-            {
-                "title": "Siena",
-                "resolution": (240, 160),
-                "variants": [
-                    {
-                        "name": "V4.20F",
-                        "id": "siena",
-                        "bios": "420f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                    {
-                        "name": "V4.21F",
-                        "id": "siena_fr",
-                        "bios": "421f",
-                        "languages": [
-                            "fr-FR",
-                        ],
-                    },
-                ]
-            },
-
-            {
-                "id": "psionwa",
-                "title": "Workabout",
-                "resolution": (240, 100),
-                "variants": [
-                    {
-                        "name": "V2.40F",
-                        "bios": "240f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                    {
-                        "name": "V1.00F",
-                        "bios": "100f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                    {
-                        "name": "V0.24B",
-                        "bios": "024b",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                ],
-            },
-   
-            {
-                "id": "psionwamx",
-                "title": "Workabout MX",
-                "resolution": (240, 100),
-                "variants": [
-                    {
-                        "name": "V7.20F",
-                        "bios": "720f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    },
-                ],
-            },
-        ],
-    },
-
-    {
-        "name": "Acorn",
-        "devices": [
-
-            {
-                "id": "pocketbk",
-                "title": "Acorn Pocket Book",
-                "resolution": (240, 80),
-                "scale": 2,
-                "variants": [
-                    {
-                        "name": "V1.91F",
-                        "bios": "191f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    }
-                ]
-            },
-
-            {
-                "id": "pocketbk2",
-                "title": "Acorn Pocket Book II",
-                "resolution": (480, 160),
-                "variants": [
-                    {
-                        "name": "V1.30F",
-                        "bios": "130f",
-                        "languages": [
-                            "en-GB",
-                        ],
-                    }
-                ]
-            },
-            
-        ],
-    },
-    
-]
+CACHE_DIRECTORY = os.path.expanduser("~/.cache/psiemu")
+ROM_DIRECTORY = os.path.join(CACHE_DIRECTORY, "roms")
 
 LANGUAGES = {
     "de-DE": {"name": "German", "symbol": "de"},
@@ -332,12 +72,48 @@ Silkscreen buttons:
 """
 
 
+with open(PROFILES_PATH) as fh:
+    PROFILES = yaml.safe_load(fh)
+
+
 @dataclass
 class Selection:
 
     vendor: int
     device: int
     variant: int
+
+
+def download(url, filename):
+    destination_path = os.path.join(os.getcwd(), filename)
+
+    print(f"Downloading '{os.path.basename(filename)}'...")
+
+    with tempfile.TemporaryDirectory() as directory:
+        temporary_path = os.path.join(directory, filename)
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+        with open(temporary_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=1024):
+                if chunk:
+                    f.write(chunk)
+        shutil.move(temporary_path, destination_path)
+        return destination_path
+
+
+def hash(path):
+    md5 = hashlib.md5()
+    if os.path.isdir(path):
+        for f in sorted(listdir(path, include_hidden=False)):
+            md5.update(shasum(os.path.join(path, f)).encode('utf-8'))
+    else:
+        with open(path, 'rb') as f:
+            while True:
+                data = f.read(65536)
+                if not data:
+                    break
+                md5.update(data)
+    return md5.hexdigest()
 
 
 def mame_command(profile):
@@ -347,7 +123,7 @@ def mame_command(profile):
         "-window",
         "-nomaximize",
         "-skip_gameinfo",
-        "-rompath", os.environ["PSIEMU_ROM_PATH"],
+        "-rompath", ROM_DIRECTORY,
         profile["id"],
     ]
 
@@ -503,6 +279,22 @@ def device_picker(stdscr):
 def main():
     parser = argparse.ArgumentParser()
     options = parser.parse_args()
+
+    os.makedirs(ROM_DIRECTORY, exist_ok=True)
+    for profile in PROFILES:
+        for device in profile["devices"]:
+            for variant in device["variants"]:
+                if "roms" not in variant:
+                    continue
+                device_directory = os.path.join(ROM_DIRECTORY, variant["id"] if "id" in variant else device["id"])
+                os.makedirs(device_directory, exist_ok=True)
+                for rom in variant["roms"]:
+                    rom_path = os.path.join(device_directory, rom["name"])
+                    if "md5" in rom and os.path.exists(rom_path):
+                        if hash(rom_path) == rom["md5"]:
+                            continue
+                        os.remove(rom_path)
+                    download(rom["url"], rom_path)
 
     os.environ.setdefault('ESCDELAY', '25')
     curses.wrapper(lambda stdscr: device_picker(stdscr))

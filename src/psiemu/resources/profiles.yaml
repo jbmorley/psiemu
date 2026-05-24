@@ -1,0 +1,195 @@
+# Psion
+- name: Psion
+  devices:
+
+  # Series 3
+  - title: Series 3
+    id: psion3
+    resolution:
+    - 240
+    - 80
+    scale: 2
+    variants:
+
+    - bios: 191f
+      languages:
+      - en-GB
+      - fr-FR
+      - de-DE
+      - es-ES
+      - it-IT
+      name: V1.91F
+      roms:
+      - name: s3_v1.91f_multi.bin
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.91f_multi/s3_v1.91f_multi.bin
+        md5: 8a303be0714a49759a0982ea3a71aaf7
+
+    - bios: 180f
+      languages:
+      - en-GB
+      - fr-FR
+      - de-DE
+      - it-IT
+      name: V1.80F
+      roms:
+      - name: s3_v1.80f_multi.bin
+        md5: 46f29831bdf170abbb5972d78465e4ab
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.80f_multi/s3_v1.80f_multi.bin
+
+#   # Series 3s
+#   - id: psion3s
+#     title: Series 3s
+#     description: Series 3 variant with built-in Sheet program
+#     resolution:
+#     - 240
+#     - 80
+#     scale: 2
+#     variants:
+#     - bios: 191f
+#       languages:
+#       - en-GB
+#       name: V1.91F
+#
+#   - id: psion3a
+#     title: Series 3a (1 MB ROM)
+#     description: 1MB ROM variant of the Series 3a
+#     resolution:
+#     - 480
+#     - 160
+#     variants:
+#     - bios: 322f
+#       languages:
+#       - en-GB
+#       name: V3.22F
+#
+#   - description: 2MB ROM variant of the Series 3a with built-in Spell and Patience
+#       programs
+#     id: psion3a
+#     resolution:
+#     - 480
+#     - 160
+#     title: Series 3a (2 MB ROM)
+#     variants:
+#     - bios: 340f
+#       id: psion3a2
+#       languages:
+#       - en-GB
+#       name: V3.40F
+#     - bios: 340f
+#       id: psion3a2_it
+#       languages:
+#       - it-IT
+#       name: V3.40F
+#     - bios: 340f
+#       id: psion3a2_us
+#       languages:
+#       - en-US
+#       name: V3.40F
+#     - bios: 341f
+#       id: psion3a2_de
+#       languages:
+#       - de-DE
+#       name: V3.41F
+#     - bios: 343f
+#       id: psion3a2_ru
+#       languages:
+#       - ru-RU
+#       name: V3.43F
+#   - id: psion3c
+#     resolution:
+#     - 480
+#     - 160
+#     title: Series 3c
+#     variants:
+#     - bios: 520f
+#       languages:
+#       - en-GB
+#       name: V5.20F
+#   - resolution:
+#     - 480
+#     - 160
+#     title: Series 3mx
+#     variants:
+#     - bios: 616f
+#       id: psion3mx
+#       languages:
+#       - en-GB
+#       name: V6.16F
+#     - bios: 617f
+#       id: psion3mx_nl
+#       languages:
+#       - nl-NL
+#       name: V6.17F
+#     - bios: 620f
+#       id: psion3mx_fr
+#       languages:
+#       - fr-FR
+#       name: V6.20F
+#   - resolution:
+#     - 240
+#     - 160
+#     title: Siena
+#     variants:
+#     - bios: 420f
+#       id: siena
+#       languages:
+#       - en-GB
+#       name: V4.20F
+#     - bios: 421f
+#       id: siena_fr
+#       languages:
+#       - fr-FR
+#       name: V4.21F
+#   - id: psionwa
+#     resolution:
+#     - 240
+#     - 100
+#     title: Workabout
+#     variants:
+#     - bios: 240f
+#       languages:
+#       - en-GB
+#       name: V2.40F
+#     - bios: 100f
+#       languages:
+#       - en-GB
+#       name: V1.00F
+#     - bios: 024b
+#       languages:
+#       - en-GB
+#       name: V0.24B
+#   - id: psionwamx
+#     resolution:
+#     - 240
+#     - 100
+#     title: Workabout MX
+#     variants:
+#     - bios: 720f
+#       languages:
+#       - en-GB
+#       name: V7.20F
+#
+# # Acorn
+# - name: Acorn
+#   devices:
+#   - id: pocketbk
+#     resolution:
+#     - 240
+#     - 80
+#     scale: 2
+#     title: Acorn Pocket Book
+#     variants:
+#     - bios: 191f
+#       languages:
+#       - en-GB
+#       name: V1.91F
+#   - id: pocketbk2
+#     resolution:
+#     - 480
+#     - 160
+#     title: Acorn Pocket Book II
+#     variants:
+#     - bios: 130f
+#       languages:
+#       - en-GB
+#       name: V1.30F
