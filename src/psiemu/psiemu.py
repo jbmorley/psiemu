@@ -225,10 +225,9 @@ def device_picker(stdscr):
         profile = vendor["devices"][selection.device]
         variant = profile["variants"][selection.variant]
 
-        # Fixup the profile.
+        # Fix up the profile.
         profile["bios"] = variant["bios"]
-        if "id" in variant:
-            profile["id"] = variant["id"]
+        profile["id"] = variant["id"]
 
         # Get the command.
         command = mame_command(profile)
