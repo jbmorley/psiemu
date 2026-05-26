@@ -78,7 +78,7 @@ Silkscreen buttons:
 
 """
 
-HEADER = """
+HEADER = r"""
  ____      _ _____
 |  _ \ ___(_) ____|_ __ ___  _   _
 | |_) / __| |  _| | '_ ` _ \| | | |
@@ -86,7 +86,8 @@ HEADER = """
 |_|   |___/_|_____|_| |_| |_|\__,_|
 
 MAME Emulation Launcher for Psion Devices
-""".strip()
+"""
+HEADER = HEADER[1:]  # Trim the leading newline (makes the header easier to read and write).
 HEADER_LENGTH = len(HEADER.split("\n"))
 
 
@@ -222,7 +223,7 @@ def device_picker(stdscr):
         stdscr.clear()
 
         stdscr.addstr(0, 0, HEADER)
-        offset = HEADER_LENGTH + 1
+        offset = HEADER_LENGTH
 
         for vendor_index, vendor in enumerate(PROFILES):
             stdscr.addstr(offset, 0, vendor["name"])
