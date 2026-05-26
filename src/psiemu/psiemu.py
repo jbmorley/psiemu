@@ -78,7 +78,8 @@ Silkscreen buttons:
 
 """
 
-HEADER = r""" ____      _ _____
+HEADER = r"""
+ ____      _ _____
 |  _ \ ___(_) ____|_ __ ___  _   _
 | |_) / __| |  _| | '_ ` _ \| | | |
 |  __/\__ \ | |___| | | | | | |_| |
@@ -86,6 +87,7 @@ HEADER = r""" ____      _ _____
 
 MAME Emulation Launcher for Psion Devices
 """
+HEADER = HEADER[1:]  # Trim the leading newline (makes the header easier to read and write).
 HEADER_LENGTH = len(HEADER.split("\n"))
 
 
