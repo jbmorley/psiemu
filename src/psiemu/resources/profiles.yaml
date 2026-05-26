@@ -84,19 +84,24 @@
         md5: 782048b4bdca628b01a7f853b6ec4c70
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.22f_eng/s3a_v3.22f_eng.bin
 
-#   - description: 2MB ROM variant of the Series 3a with built-in Spell and Patience
-#       programs
-#     id: psion3a
-#     resolution:
-#     - 480
-#     - 160
-#     title: Series 3a (2 MB ROM)
-#     variants:
-#     - bios: 340f
-#       id: psion3a2
-#       languages:
-#       - en-GB
-#       name: V3.40F
+  - id: psion3a
+    description: 2MB ROM variant of the Series 3a with built-in Spell and Patience programs
+    resolution:
+    - 480
+    - 160
+    title: Series 3a (2 MB ROM)
+    variants:
+
+    - id: psion3a2
+      bios: 340f
+      name: V3.40F
+      languages:
+      - en-GB
+      roms:
+      - name: s3a_v3.40f_eng.bin
+        md5: cfcd7be36fad529405d3abd48294af31
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.40f_eng/s3a_v3.40f_eng.bin
+
 #     - bios: 340f
 #       id: psion3a2_it
 #       languages:
@@ -195,6 +200,7 @@
 - name: Acorn
   devices:
 
+  # Pocket Book
   - id: pocketbk
     title: Acorn Pocket Book
     resolution:
@@ -214,13 +220,18 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/pb_v1.91f_acn/acspell.bin
         md5: 4ecb448d5828855dbeaf223cef5fe346
 
-  # - id: pocketbk2
-  #   title: Acorn Pocket Book II
-  #   resolution:
-  #   - 480
-  #   - 160
-  #   variants:
-  #   - bios: 130f
-  #     languages:
-  #     - en-GB
-  #     name: V1.30F
+  # Pocket Book II
+  - id: pocketbk2
+    title: Acorn Pocket Book II
+    resolution:
+    - 480
+    - 160
+    variants:
+    - bios: 130f
+      languages:
+      - en-GB
+      name: V1.30F
+      roms:
+      - name: pb2_v1.30f_acn.bin
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/pb2_v1.30f_acn/pb2_v1.30f_acn.bin
+        md5: e8eb24cba162fef331519b7c55136537
