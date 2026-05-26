@@ -78,6 +78,17 @@ Silkscreen buttons:
 
 """
 
+HEADER = """
+ ____      _ _____
+|  _ \ ___(_) ____|_ __ ___  _   _
+| |_) / __| |  _| | '_ ` _ \| | | |
+|  __/\__ \ | |___| | | | | | |_| |
+|_|   |___/_|_____|_| |_| |_|\__,_|
+
+MAME Emulation Launcher for Psion Devices
+""".strip()
+HEADER_LENGTH = len(HEADER.split("\n"))
+
 
 with open(PROFILES_PATH) as fh:
     PROFILES = yaml.safe_load(fh)
@@ -198,7 +209,7 @@ def device_picker(stdscr):
 
             stdscr.addstr(y_pos + device_index, 0, "  " + title)
 
-        return y_pos + len(devices)
+        return len(devices) + 2
 
     curses.use_default_colors()
     curses.curs_set(0)
@@ -210,7 +221,9 @@ def device_picker(stdscr):
         (height, width) = stdscr.getmaxyx()
         stdscr.clear()
 
-        offset = 0
+        stdscr.addstr(0, 0, HEADER)
+        offset = HEADER_LENGTH + 1
+
         for vendor_index, vendor in enumerate(PROFILES):
             stdscr.addstr(offset, 0, vendor["name"])
             offset += render_device_section(devices=vendor["devices"],

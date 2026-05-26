@@ -222,17 +222,17 @@
   devices:
 
   # Pocket Book
-  - id: pocketbk
-    title: Acorn Pocket Book
+  - title: Acorn Pocket Book
     resolution:
     - 240
     - 80
     scale: 2
     variants:
-    - bios: 191f
+    - id: pocketbk
+      bios: 191f
+      name: V1.91F
       languages:
       - en-GB
-      name: V1.91F
       roms:
       - name: pb_v1.91f_acn.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/pb_v1.91f_acn/pb_v1.91f_acn.bin
@@ -242,16 +242,16 @@
         md5: 4ecb448d5828855dbeaf223cef5fe346
 
   # Pocket Book II
-  - id: pocketbk2
-    title: Acorn Pocket Book II
+  - title: Acorn Pocket Book II
     resolution:
     - 480
     - 160
     variants:
-    - bios: 130f
+    - id: pocketbk2
+      bios: 130f
+      name: V1.30F
       languages:
       - en-GB
-      name: V1.30F
       roms:
       - name: pb2_v1.30f_acn.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/pb2_v1.30f_acn/pb2_v1.30f_acn.bin
