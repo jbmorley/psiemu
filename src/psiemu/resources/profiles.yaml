@@ -4,14 +4,14 @@
 
   # Series 3
   - title: Series 3
-    id: psion3
     resolution:
     - 240
     - 80
     scale: 2
     variants:
 
-    - bios: 177f
+    - id: psion3
+      bios: 177f
       languages:
       - en-GB
       name: V1.77F
@@ -23,7 +23,8 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.77f_eng/s3_v1.77f_eng2.bin
         md5: 3bf167eeb8f41d88981ed12632414e1d
 
-    - bios: 191f
+    - id: psion3
+      bios: 191f
       languages:
       - en-GB
       - fr-FR
@@ -36,7 +37,8 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.91f_multi/s3_v1.91f_multi.bin
         md5: 8a303be0714a49759a0982ea3a71aaf7
 
-    - bios: 180f
+    - id: psion3
+      bios: 180f
       languages:
       - en-GB
       - fr-FR
@@ -49,8 +51,7 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.80f_multi/s3_v1.80f_multi.bin
 
   # Series 3s
-  - id: psion3s
-    title: Series 3s
+  - title: Series 3s
     description: Series 3 variant with built-in Sheet program
     resolution:
     - 240
@@ -58,7 +59,8 @@
     scale: 2
     variants:
 
-    - bios: 191f
+    - id: psion3s
+      bios: 191f
       languages:
       - en-GB
       name: V1.91F
@@ -67,15 +69,15 @@
         md5: 44ee1451e72b8f662f369a86b488d4db
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.91f_eng/s3_v1.91f_eng.bin
 
-  - id: psion3a
-    title: Series 3a (1 MB ROM)
+  - title: Series 3a (1 MB ROM)
     description: 1MB ROM variant of the Series 3a
     resolution:
     - 480
     - 160
     variants:
 
-    - bios: 322f
+    - id: psion3a
+      bios: 322f
       languages:
       - en-GB
       name: V3.22F
@@ -84,8 +86,7 @@
         md5: 782048b4bdca628b01a7f853b6ec4c70
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.22f_eng/s3a_v3.22f_eng.bin
 
-  - id: psion3a
-    description: 2MB ROM variant of the Series 3a with built-in Spell and Patience programs
+  - description: 2MB ROM variant of the Series 3a with built-in Spell and Patience programs
     resolution:
     - 480
     - 160
@@ -102,26 +103,46 @@
         md5: cfcd7be36fad529405d3abd48294af31
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.40f_eng/s3a_v3.40f_eng.bin
 
-#     - bios: 340f
-#       id: psion3a2_it
-#       languages:
-#       - it-IT
-#       name: V3.40F
-#     - bios: 340f
-#       id: psion3a2_us
-#       languages:
-#       - en-US
-#       name: V3.40F
-#     - bios: 341f
-#       id: psion3a2_de
-#       languages:
-#       - de-DE
-#       name: V3.41F
-#     - bios: 343f
-#       id: psion3a2_ru
-#       languages:
-#       - ru-RU
-#       name: V3.43F
+    - id: psion3a2_it
+      bios: 340f
+      name: V3.40F
+      languages:
+      - it-IT
+      roms:
+      - name: s3a_v3.40f_ita.bin
+        md5: 8f9e750bb628c6f3c3189b50475215a5
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.40f_ita/s3a_v3.40f_ita.bin
+
+    - id: psion3a2_us
+      bios: 340f
+      name: V3.40F
+      languages:
+      - en-US
+      roms:
+      - name: s3a_v3.40f_usa.bin
+        md5: a6264f08982608391843a7f331b6404b
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.40f_usa/s3a_v3.40f_usa.bin
+
+    - id: psion3a2_de
+      bios: 341f
+      name: V3.41F
+      languages:
+      - de-DE
+      roms:
+      - name: s3a_v3.41f_deu.bin
+        md5: 45c8db03c357e5784158f966c5de7018
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.41f_ger/s3a_v3.41f_ger.bin
+
+    - id: psion3a2_ru
+      bios: 343f
+      name: V3.43F
+      languages:
+      - ru-RU
+      roms:
+      - name: s3a_v3.43f_rus.bin
+        md5: 4ebca4c28c3cc5317206e4103a1b702a
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.43f_rus/s3a_v3.43f_rus.bin
+
 #   - id: psion3c
 #     resolution:
 #     - 480
@@ -201,17 +222,17 @@
   devices:
 
   # Pocket Book
-  - id: pocketbk
-    title: Acorn Pocket Book
+  - title: Acorn Pocket Book
     resolution:
     - 240
     - 80
     scale: 2
     variants:
-    - bios: 191f
+    - id: pocketbk
+      bios: 191f
+      name: V1.91F
       languages:
       - en-GB
-      name: V1.91F
       roms:
       - name: pb_v1.91f_acn.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/pb_v1.91f_acn/pb_v1.91f_acn.bin
@@ -221,16 +242,16 @@
         md5: 4ecb448d5828855dbeaf223cef5fe346
 
   # Pocket Book II
-  - id: pocketbk2
-    title: Acorn Pocket Book II
+  - title: Acorn Pocket Book II
     resolution:
     - 480
     - 160
     variants:
-    - bios: 130f
+    - id: pocketbk2
+      bios: 130f
+      name: V1.30F
       languages:
       - en-GB
-      name: V1.30F
       roms:
       - name: pb2_v1.30f_acn.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/pb2_v1.30f_acn/pb2_v1.30f_acn.bin
