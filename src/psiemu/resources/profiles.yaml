@@ -48,32 +48,42 @@
         md5: 46f29831bdf170abbb5972d78465e4ab
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.80f_multi/s3_v1.80f_multi.bin
 
-#   # Series 3s
-#   - id: psion3s
-#     title: Series 3s
-#     description: Series 3 variant with built-in Sheet program
-#     resolution:
-#     - 240
-#     - 80
-#     scale: 2
-#     variants:
-#     - bios: 191f
-#       languages:
-#       - en-GB
-#       name: V1.91F
-#
-#   - id: psion3a
-#     title: Series 3a (1 MB ROM)
-#     description: 1MB ROM variant of the Series 3a
-#     resolution:
-#     - 480
-#     - 160
-#     variants:
-#     - bios: 322f
-#       languages:
-#       - en-GB
-#       name: V3.22F
-#
+  # Series 3s
+  - id: psion3s
+    title: Series 3s
+    description: Series 3 variant with built-in Sheet program
+    resolution:
+    - 240
+    - 80
+    scale: 2
+    variants:
+
+    - bios: 191f
+      languages:
+      - en-GB
+      name: V1.91F
+      roms:
+      - name: s3_v1.91f_eng.bin
+        md5: 44ee1451e72b8f662f369a86b488d4db
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.91f_eng/s3_v1.91f_eng.bin
+
+  - id: psion3a
+    title: Series 3a (1 MB ROM)
+    description: 1MB ROM variant of the Series 3a
+    resolution:
+    - 480
+    - 160
+    variants:
+
+    - bios: 322f
+      languages:
+      - en-GB
+      name: V3.22F
+      roms:
+      - name: s3a_v3.22f_eng.bin
+        md5: 782048b4bdca628b01a7f853b6ec4c70
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.22f_eng/s3a_v3.22f_eng.bin
+
 #   - description: 2MB ROM variant of the Series 3a with built-in Spell and Patience
 #       programs
 #     id: psion3a
