@@ -40,14 +40,20 @@ RESOURCES_DIRECTORY = os.path.join(PSIEMU_DIRECTORY, "resources")
 PROFILES_PATH = os.path.join(RESOURCES_DIRECTORY, "profiles.yaml")
 
 CONFIG_DIRECTORY = os.path.expanduser("~/.config/psiemu")
-NVRAM_DIRECTORY = os.path.join(CONFIG_DIRECTORY, "nvram")
 CFG_DIRECTORY = os.path.join(CONFIG_DIRECTORY, "cfg")
+CTRLR_DIRECTORY = os.path.join(CONFIG_DIRECTORY, "ctrlr")
+NVRAM_DIRECTORY = os.path.join(CONFIG_DIRECTORY, "nvram")
 
 CACHE_DIRECTORY = os.path.expanduser("~/.cache/psiemu")
+ARTWORK_DIRECTORY = os.path.join(CACHE_DIRECTORY, "artwork")
 ROM_DIRECTORY = os.path.join(CACHE_DIRECTORY, "roms")
 
 os.makedirs(CONFIG_DIRECTORY, exist_ok=True)
+os.makedirs(CTRLR_DIRECTORY, exist_ok=True)
+
 os.makedirs(CACHE_DIRECTORY, exist_ok=True)
+os.makedirs(ARTWORK_DIRECTORY, exist_ok=True)
+os.makedirs(ROM_DIRECTORY, exist_ok=True)
 
 LANGUAGES = {
     "de-DE": {"name": "German", "symbol": "de"},
@@ -87,8 +93,7 @@ HEADER = r"""
 |_|   |___/_|_____|_| |_| |_|\__,_|
 
 MAME Emulation Launcher for Psion Devices
-"""
-HEADER = HEADER[1:]  # Trim the leading newline (makes the header easier to read and write).
+"""[1:]
 HEADER_LENGTH = len(HEADER.split("\n"))
 
 PSION_LOGO = r"""
@@ -97,9 +102,27 @@ PSION_LOGO = r"""
   \_____/
  _________
 |_________|
-"""
-PSION_LOGO = PSION_LOGO[1:]  # Trim the leading newline (makes the header easier to read and write).
+"""[1:]
 PSION_LOGO_LENGTH = len(PSION_LOGO.split("\n"))
+
+DEFAULT_CONTROLLER_CONFIG = """
+<?xml version="1.0"?>
+<mameconfig version="10">
+    <system name="default">
+        <input>
+            <port tag=":TOUCHX" type="P1_LIGHTGUN_X" mask="1023" defvalue="362">
+                <newseq type="increment">NONE</newseq>
+                <newseq type="decrement">NONE</newseq>
+            </port>
+            <port tag=":TOUCHY" type="P1_LIGHTGUN_Y" mask="511" defvalue="125">
+                <newseq type="increment">NONE</newseq>
+                <newseq type="decrement">NONE</newseq>
+            </port>
+        </input>
+    </system>
+</mameconfig>
+"""[1:]
+DEFAULT_CONTROLLER_CONFIG_PATH = os.path.join(CTRLR_DIRECTORY, "default.cfg")
 
 
 with open(PROFILES_PATH) as fh:
@@ -108,7 +131,6 @@ with open(PROFILES_PATH) as fh:
 
 @dataclass
 class Selection:
-
     vendor: int
     device: int
     variant: int
@@ -159,10 +181,19 @@ def mame_command(profile):
         "-rompath", ROM_DIRECTORY,
         "-cfg_directory", CFG_DIRECTORY,
         "-nvram_directory", NVRAM_DIRECTORY,
+        "-ctrlrpath", CTRLR_DIRECTORY,
+        "-artpath", ARTWORK_DIRECTORY,
         "-prescale", "%s" % (scale, ),
         "-resolution", "%dx%d" % (width * scale, height * scale),
         profile["id"],
     ]
+
+    if "touchscreen" in profile and profile["touchscreen"]:
+        command.extend([
+            "-lightgun",
+            "-mouse",
+            "-ctrlr", "default",
+        ])
 
     if "bios" in profile:
         command.extend([
@@ -318,21 +349,32 @@ def main():
     parser = argparse.ArgumentParser()
     options = parser.parse_args()
 
+    with open(DEFAULT_CONTROLLER_CONFIG_PATH, "w") as fh:
+        fh.write(DEFAULT_CONTROLLER_CONFIG)
+
     os.makedirs(ROM_DIRECTORY, exist_ok=True)
     for profile in PROFILES:
         for device in profile["devices"]:
             for variant in device["variants"]:
-                if "roms" not in variant:
-                    continue
-                device_directory = os.path.join(ROM_DIRECTORY, variant["id"] if "id" in variant else device["id"])
-                os.makedirs(device_directory, exist_ok=True)
-                for rom in variant["roms"]:
-                    rom_path = os.path.join(device_directory, rom["name"])
-                    if "md5" in rom and os.path.exists(rom_path):
-                        if hash(rom_path) == rom["md5"]:
-                            continue
-                        os.remove(rom_path)
-                    download(rom["url"], rom_path)
+                if "roms" in variant:
+                    device_directory = os.path.join(ROM_DIRECTORY, variant["id"] if "id" in variant else device["id"])
+                    os.makedirs(device_directory, exist_ok=True)
+                    for rom in variant["roms"]:
+                        rom_path = os.path.join(device_directory, rom["name"])
+                        if "md5" in rom and os.path.exists(rom_path):
+                            if hash(rom_path) == rom["md5"]:
+                                continue
+                            os.remove(rom_path)
+                        download(rom["url"], rom_path)
+                if "artwork" in variant:
+                    for artwork in variant["artwork"]:
+                        artwork_path = os.path.join(ARTWORK_DIRECTORY, artwork["name"])
+                        if "md5" in artwork and os.path.exists(artwork_path):
+                            if hash(artwork_path) == artwork["md5"]:
+                                continue
+                            os.remove(artwork_path)
+                        download(artwork["url"], artwork_path)
+
 
     os.environ.setdefault('ESCDELAY', '25')
     curses.wrapper(lambda stdscr: device_picker(stdscr))
