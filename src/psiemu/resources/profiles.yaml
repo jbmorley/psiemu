@@ -82,12 +82,12 @@
 
   # Series 3a (1MB ROM)
   - title: Series 3a (1MB ROM)
-    description: 1MB ROM variant
     variants:
 
     - id: psion3a
       bios: 322f
       name: V3.22F
+      description: 1MB ROM variant
       languages:
       - en-GB
       display:
@@ -99,13 +99,14 @@
         md5: 782048b4bdca628b01a7f853b6ec4c70
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.22f_eng/s3a_v3.22f_eng.bin
 
+  # Series 3a (2MB ROM)
   - title: Series 3a (2MB ROM)
-    description: 2MB ROM variant with built-in Spell and Patience programs
     variants:
 
     - id: psion3a2
       bios: 340f
       name: V3.40F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - en-GB
       display:
@@ -120,6 +121,7 @@
     - id: psion3a2_it
       bios: 340f
       name: V3.40F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - it-IT
       display:
@@ -134,6 +136,7 @@
     - id: psion3a2_us
       bios: 340f
       name: V3.40F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - en-US
       display:
@@ -148,6 +151,7 @@
     - id: psion3a2_de
       bios: 341f
       name: V3.41F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - de-DE
       display:
@@ -162,6 +166,7 @@
     - id: psion3a2_ru
       bios: 343f
       name: V3.43F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - ru-RU
       display:
