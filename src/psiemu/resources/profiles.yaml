@@ -1,5 +1,5 @@
 # Psion
-- name: Psion
+- name: Psion - Consumer Devices
   devices:
 
   # Series 3
@@ -9,7 +9,7 @@
     - id: psion3
       bios: 177f
       name: V1.77F
-      description: Psion Series 3 (British English)
+      description: Psion Series 3
       languages:
       - en-GB
       display:
@@ -27,7 +27,7 @@
     - id: psion3
       bios: 191f
       name: V1.91F
-      description: Psion Series 3 (British English, French, German, Spanish, Italian)
+      description: Psion Series 3
       languages:
       - en-GB
       - fr-FR
@@ -46,7 +46,7 @@
     - id: psion3
       bios: 180f
       name: V1.80F
-      description: Psion Series 3 (British English, French, German, Italian)
+      description: Psion Series 3
       languages:
       - en-GB
       - fr-FR
@@ -68,7 +68,7 @@
     - id: psion3s
       bios: 191f
       name: V1.91F
-      description: Series 3 variant with built-in Sheet program (British English)
+      description: Series 3 variant with built-in Sheet program
       languages:
       - en-GB
       display:
@@ -184,7 +184,7 @@
     - id: siena
       bios: 420f
       name: V4.20F
-      description: Psion Siena (British English)
+      description: Psion Siena
       languages:
       - en-GB
       display:
@@ -199,7 +199,7 @@
     - id: siena_fr
       bios: 421f
       name: V4.21F
-      description: Psion Siena (French)
+      description: Psion Siena
       languages:
       - fr-FR
       display:
@@ -275,24 +275,55 @@
         md5: 1b367e2fb862545cf420ff74a7f85ea7
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.20f_fre/maple_v6.20f_fre.bin
 
-#   - id: psionwa
-#     display:
-#     - 240
-#     - 100
-#     title: Workabout
-#     variants:
-#     - bios: 240f
-#       languages:
-#       - en-GB
-#       name: V2.40F
-#     - bios: 100f
-#       languages:
-#       - en-GB
-#       name: V1.00F
-#     - bios: 024b
-#       languages:
-#       - en-GB
-#       name: V0.24B
+- name: Psion - Enterprise Devices
+  devices:
+
+  - title: Workabout
+    variants:
+
+    - id: psionwa
+      bios: 024b
+      name: V0.24B
+      languages:
+      - en-GB
+      display:
+        width: 240
+        height: 100
+        scale: 1
+      roms:
+      - name: w1_v0.24b.bin
+        md5: 1afac14fe87e19e7d29d494177dc58d9
+        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v0.24b_eng/w1_v0.24b_eng.bin
+
+    - id: psionwa
+      bios: 100f
+      name: V1.00F
+      languages:
+      - en-GB
+      display:
+        width: 240
+        height: 100
+        scale: 1
+      roms:
+      - name: w1_v1.00f.bin
+        md5: 87c84a27bc71df5e19ac1208735a7a1e
+        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v1.00f_eng/w1_v1.00f_eng.bin
+
+    - id: psionwa
+      bios: 240f
+      name: V2.40F
+      languages:
+      - en-GB
+      display:
+        width: 240
+        height: 100
+        scale: 1
+      roms:
+      - name: w1_v2.40f.bin
+        md5: 10b9a0c9174aec0316571827dce42013
+        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v2.40f_eng/w1_v2.40f_eng.bin
+
+
 #   - id: psionwamx
 #     display:
 #     - 240
