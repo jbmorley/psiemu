@@ -275,6 +275,29 @@
         md5: 1b367e2fb862545cf420ff74a7f85ea7
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.20f_fre/maple_v6.20f_fre.bin
 
+  # Series 5mx
+  - name: Series 5mx
+    variants:
+
+    - name: 1.05 (250)
+      id: psion5mx
+      # bios: 616f
+      languages:
+      - en-GB
+      display:
+        width: 695
+        height: 305
+        scale: 1
+      touchscreen: True
+      roms:
+      - name: s5mx_uk16_v260.rom
+        md5: 105df0efa78e573387c9b813475d6577
+        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(260)_eng/5mx_v1.05(260)_eng.bin
+      artwork:
+      - name: psion5mx.zip
+        md5: 251cd0d18026469dcf64572388b333fb
+        url: https://scratch.jbmorley.co.uk/mame/artwork/psion5mx.zip
+
 - name: Psion - Enterprise Devices
   devices:
 
