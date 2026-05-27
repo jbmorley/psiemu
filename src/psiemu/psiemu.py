@@ -249,6 +249,7 @@ def device_picker(stdscr):
         # Fix up the profile.
         profile["bios"] = variant["bios"]
         profile["id"] = variant["id"]
+        profile["display"] = variant["display"]
         if "description" in variant:
             profile["description"] = variant["description"]
 
