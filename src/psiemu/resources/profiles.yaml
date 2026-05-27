@@ -6,9 +6,9 @@
   - name: Series 3
     variants:
 
-    - id: psion3
+    - name: V1.77F
+      id: psion3
       bios: 177f
-      name: V1.77F
       description: Psion Series 3
       languages:
       - en-GB
@@ -24,9 +24,9 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.77f_eng/s3_v1.77f_eng2.bin
         md5: 3bf167eeb8f41d88981ed12632414e1d
 
-    - id: psion3
+    - name: V1.91F
+      id: psion3
       bios: 191f
-      name: V1.91F
       description: Psion Series 3
       languages:
       - en-GB
@@ -43,9 +43,9 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.91f_multi/s3_v1.91f_multi.bin
         md5: 8a303be0714a49759a0982ea3a71aaf7
 
-    - id: psion3
+    - name: V1.80F
+      id: psion3
       bios: 180f
-      name: V1.80F
       description: Psion Series 3
       languages:
       - en-GB
@@ -65,9 +65,9 @@
   - name: Series 3s
     variants:
 
-    - id: psion3s
+    - name: V1.91F
+      id: psion3s
       bios: 191f
-      name: V1.91F
       description: Series 3 variant with built-in Sheet program
       languages:
       - en-GB
@@ -84,9 +84,9 @@
   - name: Series 3a (1MB ROM)
     variants:
 
-    - id: psion3a
+    - name: V3.22F
+      id: psion3a
       bios: 322f
-      name: V3.22F
       description: 1MB ROM variant
       languages:
       - en-GB
@@ -103,9 +103,9 @@
   - name: Series 3a (2MB ROM)
     variants:
 
-    - id: psion3a2
+    - name: V3.40F
+      id: psion3a2
       bios: 340f
-      name: V3.40F
       description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - en-GB
@@ -118,9 +118,9 @@
         md5: cfcd7be36fad529405d3abd48294af31
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.40f_eng/s3a_v3.40f_eng.bin
 
-    - id: psion3a2_it
+    - name: V3.40F
+      id: psion3a2_it
       bios: 340f
-      name: V3.40F
       description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - it-IT
@@ -133,9 +133,9 @@
         md5: 8f9e750bb628c6f3c3189b50475215a5
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.40f_ita/s3a_v3.40f_ita.bin
 
-    - id: psion3a2_us
+    - name: V3.40F
+      id: psion3a2_us
       bios: 340f
-      name: V3.40F
       description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - en-US
@@ -148,9 +148,9 @@
         md5: a6264f08982608391843a7f331b6404b
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.40f_usa/s3a_v3.40f_usa.bin
 
-    - id: psion3a2_de
+    - name: V3.41F
+      id: psion3a2_de
       bios: 341f
-      name: V3.41F
       description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - de-DE
@@ -163,9 +163,9 @@
         md5: 45c8db03c357e5784158f966c5de7018
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.41f_ger/s3a_v3.41f_ger.bin
 
-    - id: psion3a2_ru
+    - name: V3.43F
+      id: psion3a2_ru
       bios: 343f
-      name: V3.43F
       description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - ru-RU
@@ -181,9 +181,9 @@
   - name: Siena
     variants:
 
-    - id: siena
+    - name: V4.20F
+      id: siena
       bios: 420f
-      name: V4.20F
       description: Psion Siena
       languages:
       - en-GB
@@ -196,9 +196,9 @@
           md5: 242e80fdbf9b353a05f6ff4d1db1c769
           url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Siena/vine_v4.20f_eng/vine_v4.20f_eng.bin
 
-    - id: siena_fr
+    - name: V4.21F
+      id: siena_fr
       bios: 421f
-      name: V4.21F
       description: Psion Siena
       languages:
       - fr-FR
@@ -215,9 +215,9 @@
   - name: Series 3c
     variants:
 
-    - id: psion3c
+    - name: V5.20F
+      id: psion3c
       bios: 520f
-      name: V5.20F
       languages:
       - en-GB
       display:
@@ -233,9 +233,9 @@
   - name: Series 3mx
     variants:
 
-    - id: psion3mx
+    - name: V6.16F
+      id: psion3mx
       bios: 616f
-      name: V6.16F
       languages:
       - en-GB
       display:
@@ -247,9 +247,9 @@
         md5: 64572cc3522447179d1e6f3b8fb45360
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.16f_eng/maple_v6.16f_eng.bin
 
-    - id: psion3mx_nl
+    - name: V6.17F
+      id: psion3mx_nl
       bios: 617f
-      name: V6.17F
       languages:
       - nl-NL
       display:
@@ -261,9 +261,9 @@
         md5: 1c0be65220e3e2ab6d75b83975e3805b
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.17f_nl/maple_v6.17f_nl.bin
 
-    - id: psion3mx_fr
+    - name: V6.20F
+      id: psion3mx_fr
       bios: 620f
-      name: V6.20F
       languages:
       - fr-FR
       display:
@@ -282,9 +282,9 @@
   - name: Workabout
     variants:
 
-    - id: psionwa
+    - name: V0.24B
+      id: psionwa
       bios: 024b
-      name: V0.24B
       languages:
       - en-GB
       display:
@@ -296,9 +296,9 @@
         md5: 1afac14fe87e19e7d29d494177dc58d9
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v0.24b_eng/w1_v0.24b_eng.bin
 
-    - id: psionwa
+    - name: V1.00F
+      id: psionwa
       bios: 100f
-      name: V1.00F
       languages:
       - en-GB
       display:
@@ -310,9 +310,9 @@
         md5: 87c84a27bc71df5e19ac1208735a7a1e
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v1.00f_eng/w1_v1.00f_eng.bin
 
-    - id: psionwa
+    - name: V2.40F
+      id: psionwa
       bios: 240f
-      name: V2.40F
       languages:
       - en-GB
       display:
@@ -328,9 +328,9 @@
   - name: Workabout MX
     variants:
 
-    - id: psionwamx
+    - name: V7.20F
+      id: psionwamx
       bios: 720f
-      name: V7.20F
       languages:
       - en-GB
       display:
@@ -350,9 +350,9 @@
   - name: Acorn Pocket Book
     variants:
 
-    - id: pocketbk
+    - name: V1.91F
+      id: pocketbk
       bios: 191f
-      name: V1.91F
       languages:
       - en-GB
       display:
@@ -370,9 +370,10 @@
   # Pocket Book II
   - name: Acorn Pocket Book II
     variants:
-    - id: pocketbk2
+
+    - name: V1.30F
+      id: pocketbk2
       bios: 130f
-      name: V1.30F
       languages:
       - en-GB
       display:
