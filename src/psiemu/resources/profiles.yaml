@@ -143,16 +143,22 @@
         md5: 4ebca4c28c3cc5317206e4103a1b702a
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.43f_rus/s3a_v3.43f_rus.bin
 
-#   - id: psion3c
-#     resolution:
-#     - 480
-#     - 160
-#     title: Series 3c
-#     variants:
-#     - bios: 520f
-#       languages:
-#       - en-GB
-#       name: V5.20F
+  - title: Series 3c
+    resolution:
+    - 480
+    - 160
+    variants:
+
+    - id: psion3c
+      bios: 520f
+      languages:
+      - en-GB
+      name: V5.20F
+      roms:
+      - name: oak_v5.20f_eng.bin
+        md5: 3c1a079f53c00916e8d0dc11b35a0390
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3c/oak_v5.20f_eng/oak_v5.20f_eng.bin
+
 #   - resolution:
 #     - 480
 #     - 160
