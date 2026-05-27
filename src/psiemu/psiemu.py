@@ -91,6 +91,16 @@ MAME Emulation Launcher for Psion Devices
 HEADER = HEADER[1:]  # Trim the leading newline (makes the header easier to read and write).
 HEADER_LENGTH = len(HEADER.split("\n"))
 
+PSION_LOGO = r"""
+   _   _
+  | |_| |
+  \_____/
+ _________
+|_________|
+"""
+PSION_LOGO = PSION_LOGO[1:]  # Trim the leading newline (makes the header easier to read and write).
+PSION_LOGO_LENGTH = len(PSION_LOGO.split("\n"))
+
 
 with open(PROFILES_PATH) as fh:
     PROFILES = yaml.safe_load(fh)
@@ -230,6 +240,8 @@ def device_picker(stdscr):
         stdscr.clear()
 
         stdscr.addstr(0, 0, HEADER)
+        for i, line in enumerate(PSION_LOGO.split("\n")):
+            stdscr.addstr(i, width-11, line)
         offset = HEADER_LENGTH
 
         for vendor_index, vendor in enumerate(PROFILES):
