@@ -4,10 +4,6 @@
 
   # Series 3
   - title: Series 3
-    resolution:
-    - 240
-    - 80
-    scale: 2
     variants:
 
     - id: psion3
@@ -16,6 +12,10 @@
       description: Psion Series 3 (British English)
       languages:
       - en-GB
+      display:
+        width: 240
+        height: 80
+        scale: 2
       roms:
       - name: 3504-3001-01_19-11-91v1.77f_eng.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.77f_eng/s3_v1.77f_eng1.bin
@@ -34,6 +34,10 @@
       - de-DE
       - es-ES
       - it-IT
+      display:
+        width: 240
+        height: 80
+        scale: 2
       roms:
       - name: s3_v1.91f_multi.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.91f_multi/s3_v1.91f_multi.bin
@@ -48,6 +52,10 @@
       - fr-FR
       - de-DE
       - it-IT
+      display:
+        width: 240
+        height: 80
+        scale: 2
       roms:
       - name: s3_v1.80f_multi.bin
         md5: 46f29831bdf170abbb5972d78465e4ab
@@ -55,10 +63,6 @@
 
   # Series 3s
   - title: Series 3s
-    resolution:
-    - 240
-    - 80
-    scale: 2
     variants:
 
     - id: psion3s
@@ -67,40 +71,48 @@
       description: Series 3 variant with built-in Sheet program (British English)
       languages:
       - en-GB
+      display:
+        width: 240
+        height: 80
+        scale: 2
       roms:
       - name: s3_v1.91f_eng.bin
         md5: 44ee1451e72b8f662f369a86b488d4db
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.91f_eng/s3_v1.91f_eng.bin
 
-  - title: Series 3a (1 MB ROM)
-    description: 1MB ROM variant of the Series 3a
-    resolution:
-    - 480
-    - 160
+  # Series 3a (1MB ROM)
+  - title: Series 3a (1MB ROM)
     variants:
 
     - id: psion3a
       bios: 322f
+      name: V3.22F
+      description: 1MB ROM variant
       languages:
       - en-GB
-      name: V3.22F
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: s3a_v3.22f_eng.bin
         md5: 782048b4bdca628b01a7f853b6ec4c70
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.22f_eng/s3a_v3.22f_eng.bin
 
-  - description: 2MB ROM variant of the Series 3a with built-in Spell and Patience programs
-    resolution:
-    - 480
-    - 160
-    title: Series 3a (2 MB ROM)
+  # Series 3a (2MB ROM)
+  - title: Series 3a (2MB ROM)
     variants:
 
     - id: psion3a2
       bios: 340f
       name: V3.40F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - en-GB
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: s3a_v3.40f_eng.bin
         md5: cfcd7be36fad529405d3abd48294af31
@@ -109,8 +121,13 @@
     - id: psion3a2_it
       bios: 340f
       name: V3.40F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - it-IT
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: s3a_v3.40f_ita.bin
         md5: 8f9e750bb628c6f3c3189b50475215a5
@@ -119,8 +136,13 @@
     - id: psion3a2_us
       bios: 340f
       name: V3.40F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - en-US
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: s3a_v3.40f_usa.bin
         md5: a6264f08982608391843a7f331b6404b
@@ -129,8 +151,13 @@
     - id: psion3a2_de
       bios: 341f
       name: V3.41F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - de-DE
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: s3a_v3.41f_deu.bin
         md5: 45c8db03c357e5784158f966c5de7018
@@ -139,40 +166,49 @@
     - id: psion3a2_ru
       bios: 343f
       name: V3.43F
+      description: 2MB ROM variant with built-in Spell and Patience programs
       languages:
       - ru-RU
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: s3a_v3.43f_rus.bin
         md5: 4ebca4c28c3cc5317206e4103a1b702a
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.43f_rus/s3a_v3.43f_rus.bin
 
+  # Series 3c
   - title: Series 3c
-    resolution:
-    - 480
-    - 160
     variants:
 
     - id: psion3c
       bios: 520f
+      name: V5.20F
       languages:
       - en-GB
-      name: V5.20F
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: oak_v5.20f_eng.bin
         md5: 3c1a079f53c00916e8d0dc11b35a0390
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3c/oak_v5.20f_eng/oak_v5.20f_eng.bin
 
+  # Series 3mx
   - title: Series 3mx
-    resolution:
-    - 480
-    - 160
     variants:
 
     - id: psion3mx
       bios: 616f
+      name: V6.16F
       languages:
       - en-GB
-      name: V6.16F
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: maple_v6.16f_uk.bin
         md5: 64572cc3522447179d1e6f3b8fb45360
@@ -183,6 +219,10 @@
       name: V6.17F
       languages:
       - nl-NL
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: maple_v6.17f_nl.bin
         md5: 1c0be65220e3e2ab6d75b83975e3805b
@@ -193,12 +233,16 @@
       name: V6.20F
       languages:
       - fr-FR
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: maple_v6.20f_fre.bin
         md5: 1b367e2fb862545cf420ff74a7f85ea7
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3mx/maple_v6.20f_fre/maple_v6.20f_fre.bin
 
-#   - resolution:
+#   - display:
 #     - 240
 #     - 160
 #     title: Siena
@@ -214,7 +258,7 @@
 #       - fr-FR
 #       name: V4.21F
 #   - id: psionwa
-#     resolution:
+#     display:
 #     - 240
 #     - 100
 #     title: Workabout
@@ -232,7 +276,7 @@
 #       - en-GB
 #       name: V0.24B
 #   - id: psionwamx
-#     resolution:
+#     display:
 #     - 240
 #     - 100
 #     title: Workabout MX
@@ -248,16 +292,17 @@
 
   # Pocket Book
   - title: Acorn Pocket Book
-    resolution:
-    - 240
-    - 80
-    scale: 2
     variants:
+
     - id: pocketbk
       bios: 191f
       name: V1.91F
       languages:
       - en-GB
+      display:
+        width: 240
+        height: 80
+        scale: 2
       roms:
       - name: pb_v1.91f_acn.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/pb_v1.91f_acn/pb_v1.91f_acn.bin
@@ -268,15 +313,16 @@
 
   # Pocket Book II
   - title: Acorn Pocket Book II
-    resolution:
-    - 480
-    - 160
     variants:
     - id: pocketbk2
       bios: 130f
       name: V1.30F
       languages:
       - en-GB
+      display:
+        width: 480
+        height: 160
+        scale: 1
       roms:
       - name: pb2_v1.30f_acn.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/pb2_v1.30f_acn/pb2_v1.30f_acn.bin
