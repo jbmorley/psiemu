@@ -197,7 +197,7 @@ def device_picker(stdscr):
     def render_device_section(devices, is_section_active, y_pos, selection):
 
         for device_index, profile in enumerate(devices):
-            title = profile["title"].ljust(22)
+            title = profile["name"].ljust(22)
             variants = profile["variants"]
 
             for variant_index, variant in enumerate(variants):

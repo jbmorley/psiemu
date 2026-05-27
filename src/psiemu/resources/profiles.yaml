@@ -3,7 +3,7 @@
   devices:
 
   # Series 3
-  - title: Series 3
+  - name: Series 3
     variants:
 
     - id: psion3
@@ -62,7 +62,7 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.80f_multi/s3_v1.80f_multi.bin
 
   # Series 3s
-  - title: Series 3s
+  - name: Series 3s
     variants:
 
     - id: psion3s
@@ -81,7 +81,7 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.91f_eng/s3_v1.91f_eng.bin
 
   # Series 3a (1MB ROM)
-  - title: Series 3a (1MB ROM)
+  - name: Series 3a (1MB ROM)
     variants:
 
     - id: psion3a
@@ -100,7 +100,7 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.22f_eng/s3a_v3.22f_eng.bin
 
   # Series 3a (2MB ROM)
-  - title: Series 3a (2MB ROM)
+  - name: Series 3a (2MB ROM)
     variants:
 
     - id: psion3a2
@@ -178,7 +178,7 @@
         md5: 4ebca4c28c3cc5317206e4103a1b702a
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.43f_rus/s3a_v3.43f_rus.bin
 
-  - title: Siena
+  - name: Siena
     variants:
 
     - id: siena
@@ -212,7 +212,7 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Siena/vine_v4.21f_fre/vine_v4.21f_fre.bin
 
   # Series 3c
-  - title: Series 3c
+  - name: Series 3c
     variants:
 
     - id: psion3c
@@ -230,7 +230,7 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3c/oak_v5.20f_eng/oak_v5.20f_eng.bin
 
   # Series 3mx
-  - title: Series 3mx
+  - name: Series 3mx
     variants:
 
     - id: psion3mx
@@ -278,7 +278,7 @@
 - name: Psion - Enterprise Devices
   devices:
 
-  - title: Workabout
+  - name: Workabout
     variants:
 
     - id: psionwa
@@ -328,7 +328,7 @@
 #     display:
 #     - 240
 #     - 100
-#     title: Workabout MX
+#     name: Workabout MX
 #     variants:
 #     - bios: 720f
 #       languages:
@@ -340,7 +340,7 @@
   devices:
 
   # Pocket Book
-  - title: Acorn Pocket Book
+  - name: Acorn Pocket Book
     variants:
 
     - id: pocketbk
@@ -361,7 +361,7 @@
         md5: 4ecb448d5828855dbeaf223cef5fe346
 
   # Pocket Book II
-  - title: Acorn Pocket Book II
+  - name: Acorn Pocket Book II
     variants:
     - id: pocketbk2
       bios: 130f
