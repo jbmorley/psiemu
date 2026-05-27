@@ -4,10 +4,10 @@
 
   # Series 3
   - title: Series 3
-    resolution:
-    - 240
-    - 80
-    scale: 2
+    display:
+      width: 240
+      height: 80
+      scale: 2
     variants:
 
     - id: psion3
@@ -55,10 +55,10 @@
 
   # Series 3s
   - title: Series 3s
-    resolution:
-    - 240
-    - 80
-    scale: 2
+    display:
+      width: 240
+      height: 80
+      scale: 2
     variants:
 
     - id: psion3s
@@ -74,9 +74,10 @@
 
   - title: Series 3a (1 MB ROM)
     description: 1MB ROM variant of the Series 3a
-    resolution:
-    - 480
-    - 160
+    display:
+      width: 480
+      height: 160
+      scale: 1
     variants:
 
     - id: psion3a
@@ -90,9 +91,10 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.22f_eng/s3a_v3.22f_eng.bin
 
   - description: 2MB ROM variant of the Series 3a with built-in Spell and Patience programs
-    resolution:
-    - 480
-    - 160
+    display:
+      width: 480
+      height: 160
+      scale: 1
     title: Series 3a (2 MB ROM)
     variants:
 
@@ -147,9 +149,10 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3a/s3a_v3.43f_rus/s3a_v3.43f_rus.bin
 
   - title: Series 3c
-    resolution:
-    - 480
-    - 160
+    display:
+      width: 480
+      height: 160
+      scale: 1
     variants:
 
     - id: psion3c
@@ -163,9 +166,10 @@
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3c/oak_v5.20f_eng/oak_v5.20f_eng.bin
 
   - title: Series 3mx
-    resolution:
-    - 480
-    - 160
+    display:
+      width: 480
+      height: 160
+      scale: 1
     variants:
 
     - id: psion3mx
@@ -198,7 +202,7 @@
         md5: 1b367e2fb862545cf420ff74a7f85ea7
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3mx/maple_v6.20f_fre/maple_v6.20f_fre.bin
 
-#   - resolution:
+#   - display:
 #     - 240
 #     - 160
 #     title: Siena
@@ -214,7 +218,7 @@
 #       - fr-FR
 #       name: V4.21F
 #   - id: psionwa
-#     resolution:
+#     display:
 #     - 240
 #     - 100
 #     title: Workabout
@@ -232,7 +236,7 @@
 #       - en-GB
 #       name: V0.24B
 #   - id: psionwamx
-#     resolution:
+#     display:
 #     - 240
 #     - 100
 #     title: Workabout MX
@@ -248,10 +252,10 @@
 
   # Pocket Book
   - title: Acorn Pocket Book
-    resolution:
-    - 240
-    - 80
-    scale: 2
+    display:
+      width: 240
+      height: 80
+      scale: 2
     variants:
     - id: pocketbk
       bios: 191f
@@ -268,9 +272,10 @@
 
   # Pocket Book II
   - title: Acorn Pocket Book II
-    resolution:
-    - 480
-    - 160
+    display:
+      width: 480
+      height: 160
+      scale: 1
     variants:
     - id: pocketbk2
       bios: 130f

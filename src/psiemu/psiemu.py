@@ -138,6 +138,9 @@ def hash(path):
 
 def mame_command(profile):
 
+    scale = profile["display"]["scale"] * 2  # TODO: Detect display scale.
+    width, height = profile["display"]["width"], profile["display"]["height"]
+
     command = [
         "mame",
         "-window",
@@ -146,17 +149,10 @@ def mame_command(profile):
         "-rompath", ROM_DIRECTORY,
         "-cfg_directory", CFG_DIRECTORY,
         "-nvram_directory", NVRAM_DIRECTORY,
+        "-prescale", "%s" % (scale, ),
+        "-resolution", "%dx%d" % (width * scale, height * scale),
         profile["id"],
     ]
-
-    if "resolution" in profile:
-        device_scale = profile["scale"] if "scale" in profile else 1
-        scale = 2 * device_scale  # TODO: Detect display scale.
-        (width, height) = profile['resolution']
-        command.extend([
-            "-prescale", "%s" % (scale, ),
-            "-resolution", "%dx%d" % (width * scale, height * scale),
-        ])
 
     if "bios" in profile:
         command.extend([
