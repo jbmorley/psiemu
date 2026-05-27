@@ -41,12 +41,13 @@
 
     - id: psion3
       bios: 180f
+      name: V1.80F
+      description: Psion Series 3 (British English, French, German, Italian)
       languages:
       - en-GB
       - fr-FR
       - de-DE
       - it-IT
-      name: V1.80F
       roms:
       - name: s3_v1.80f_multi.bin
         md5: 46f29831bdf170abbb5972d78465e4ab
