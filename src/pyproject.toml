@@ -10,6 +10,7 @@ authors = [
   {name = "Jason Morley", email = "hello@jbmorley.co.uk"}
 ]
 dependencies = [
+  "pyclip",
   "pyyaml",
   "requests",
 ]

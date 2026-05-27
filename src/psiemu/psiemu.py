@@ -29,6 +29,7 @@ import shutil
 import subprocess
 import tempfile
 
+import pyclip
 import requests
 import yaml
 
@@ -166,7 +167,8 @@ def mame_command(profile):
 
 
 def run_mame(profile):
-    subprocess.Popen(mame_command(profile),
+    command = mame_command(profile)
+    subprocess.Popen(command,
                      start_new_session=True,
                      stdout=subprocess.DEVNULL,
                      stderr=subprocess.DEVNULL)
@@ -224,6 +226,7 @@ def device_picker(stdscr):
     curses.curs_set(0)
 
     selection = Selection(0, 0, 0)
+    status_text = None
 
     while True:
 
@@ -254,8 +257,12 @@ def device_picker(stdscr):
             profile["description"] = variant["description"]
 
         # Render the footer.
-        render_footer("ent: run", -2, curses.A_REVERSE)
-        render_footer(profile["description"] if "description" in profile else "", -1)
+        render_footer("ent: run   c: copy command   q: quit", -2, curses.A_REVERSE)
+        if status_text is not None:
+            render_footer(status_text, -1)
+            status_text = None
+        else:
+            render_footer(profile["description"] if "description" in profile else "", -1)
 
         # Get and handle input.
         key = stdscr.getch()
@@ -292,10 +299,12 @@ def device_picker(stdscr):
 
         elif key == ord('\n'):
 
-            profile["bios"] = variant["bios"]
-            if "id" in variant:
-                profile["id"] = variant["id"]
             run_mame(profile)
+
+        elif key == ord('c'):
+
+            pyclip.copy(" ".join(mame_command(profile)))
+            status_text = "Command line copied to clipboard"
 
         elif key == 27 or key == ord('q'):
 
