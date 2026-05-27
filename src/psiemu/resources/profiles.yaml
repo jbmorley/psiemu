@@ -278,6 +278,7 @@
 - name: Psion - Enterprise Devices
   devices:
 
+  # Workabout
   - name: Workabout
     variants:
 
@@ -323,18 +324,24 @@
         md5: 10b9a0c9174aec0316571827dce42013
         url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v2.40f_eng/w1_v2.40f_eng.bin
 
+  # Workabout MX
+  - name: Workabout MX
+    variants:
 
-#   - id: psionwamx
-#     display:
-#     - 240
-#     - 100
-#     name: Workabout MX
-#     variants:
-#     - bios: 720f
-#       languages:
-#       - en-GB
-#       name: V7.20F
-#
+    - id: psionwamx
+      bios: 720f
+      name: V7.20F
+      languages:
+      - en-GB
+      display:
+        width: 240
+        height: 100
+        scale: 1
+      roms:
+      - name: w2mx_v7.20f.bin
+        md5: d5e5c2aa32f9888e7fec8d2214f1547e
+        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/WorkaboutMX/w2mx_v7.20f_eng/w2mx_v7.20f_eng.bin
+
 # Acorn
 - name: Acorn
   devices:
