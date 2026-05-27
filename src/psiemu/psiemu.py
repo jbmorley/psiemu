@@ -246,20 +246,13 @@ def device_picker(stdscr):
         profile = vendor["devices"][selection.device]
         variant = profile["variants"][selection.variant]
 
-        # Fix up the profile.
-        profile["bios"] = variant["bios"]
-        profile["id"] = variant["id"]
-        profile["display"] = variant["display"]
-        if "description" in variant:
-            profile["description"] = variant["description"]
-
         # Render the footer.
         render_footer("ent: run   c: copy command   q: quit", -2, curses.A_REVERSE)
         if status_text is not None:
             render_footer(status_text, -1)
             status_text = None
         else:
-            render_footer(profile["description"] if "description" in profile else "", -1)
+            render_footer(variant["description"] if "description" in variant else "", -1)
 
         # Get and handle input.
         key = stdscr.getch()
@@ -296,11 +289,11 @@ def device_picker(stdscr):
 
         elif key == ord('\n'):
 
-            run_mame(profile)
+            run_mame(variant)
 
         elif key == ord('c'):
 
-            pyclip.copy(" ".join(mame_command(profile)))
+            pyclip.copy(" ".join(mame_command(variant)))
             status_text = "Command line copied to clipboard"
 
         elif key == 27 or key == ord('q'):
