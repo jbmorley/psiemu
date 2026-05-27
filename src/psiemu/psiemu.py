@@ -188,6 +188,14 @@ def language_description(variant):
 
 def device_picker(stdscr):
 
+    def render_footer(text, offset, attr=0):
+        (height, width) = stdscr.getmaxyx()
+        text = text.ljust(width)[:width]
+        try:
+            stdscr.addstr(height + offset, 0, text, attr)
+        except curses.error:
+            pass
+
     def render_device_section(devices, is_section_active, y_pos, selection):
 
         for device_index, profile in enumerate(devices):
@@ -242,9 +250,12 @@ def device_picker(stdscr):
         # Fix up the profile.
         profile["bios"] = variant["bios"]
         profile["id"] = variant["id"]
+        if "description" in variant:
+            profile["description"] = variant["description"]
 
-        # Get the command.
-        command = mame_command(profile)
+        # Render the footer.
+        render_footer("ent: run", -2, curses.A_REVERSE)
+        render_footer(profile["description"] if "description" in profile else "", -1)
 
         # Get and handle input.
         key = stdscr.getch()

@@ -12,9 +12,10 @@
 
     - id: psion3
       bios: 177f
+      name: V1.77F
+      description: Psion Series 3 (British English)
       languages:
       - en-GB
-      name: V1.77F
       roms:
       - name: 3504-3001-01_19-11-91v1.77f_eng.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.77f_eng/s3_v1.77f_eng1.bin
@@ -25,13 +26,14 @@
 
     - id: psion3
       bios: 191f
+      name: V1.91F
+      description: Psion Series 3 (British English, French, German, Spanish, Italian)
       languages:
       - en-GB
       - fr-FR
       - de-DE
       - es-ES
       - it-IT
-      name: V1.91F
       roms:
       - name: s3_v1.91f_multi.bin
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3/s3_v1.91f_multi/s3_v1.91f_multi.bin
