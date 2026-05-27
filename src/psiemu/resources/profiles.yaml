@@ -159,26 +159,42 @@
         md5: 3c1a079f53c00916e8d0dc11b35a0390
         url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3c/oak_v5.20f_eng/oak_v5.20f_eng.bin
 
-#   - resolution:
-#     - 480
-#     - 160
-#     title: Series 3mx
-#     variants:
-#     - bios: 616f
-#       id: psion3mx
-#       languages:
-#       - en-GB
-#       name: V6.16F
-#     - bios: 617f
-#       id: psion3mx_nl
-#       languages:
-#       - nl-NL
-#       name: V6.17F
-#     - bios: 620f
-#       id: psion3mx_fr
-#       languages:
-#       - fr-FR
-#       name: V6.20F
+  - title: Series 3mx
+    resolution:
+    - 480
+    - 160
+    variants:
+
+    - id: psion3mx
+      bios: 616f
+      languages:
+      - en-GB
+      name: V6.16F
+      roms:
+      - name: maple_v6.16f_uk.bin
+        md5: 64572cc3522447179d1e6f3b8fb45360
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3mx/maple_v6.16f_eng/maple_v6.16f_eng.bin
+
+    - id: psion3mx_nl
+      bios: 617f
+      name: V6.17F
+      languages:
+      - nl-NL
+      roms:
+      - name: maple_v6.17f_nl.bin
+        md5: 1c0be65220e3e2ab6d75b83975e3805b
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3mx/maple_v6.17f_nl/maple_v6.17f_nl.bin
+
+    - id: psion3mx_fr
+      bios: 620f
+      name: V6.20F
+      languages:
+      - fr-FR
+      roms:
+      - name: maple_v6.20f_fre.bin
+        md5: 1b367e2fb862545cf420ff74a7f85ea7
+        url: https://github.com/explit28/Psion-ROM/raw/refs/heads/main/Series3mx/maple_v6.20f_fre/maple_v6.20f_fre.bin
+
 #   - resolution:
 #     - 240
 #     - 160
