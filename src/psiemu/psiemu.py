@@ -197,7 +197,7 @@ def device_picker(stdscr):
     def render_device_section(devices, is_section_active, y_pos, selection):
 
         for device_index, profile in enumerate(devices):
-            title = profile["title"].ljust(22)
+            title = profile["name"].ljust(22)
             variants = profile["variants"]
 
             for variant_index, variant in enumerate(variants):
@@ -252,7 +252,8 @@ def device_picker(stdscr):
             render_footer(status_text, -1)
             status_text = None
         else:
-            render_footer(variant["description"] if "description" in variant else "", -1)
+            languages = language_description(variant)
+            render_footer(f"{variant["description"]} ({languages})" if "description" in variant else languages, -1)
 
         # Get and handle input.
         key = stdscr.getch()
