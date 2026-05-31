@@ -235,25 +235,23 @@ def device_picker(stdscr):
         except curses.error:
             pass
 
-    def render_device_section(devices, is_section_active, y_pos, selection):
+    def render_device_section(devices, title_width, column_width, column_spacing, is_section_active, y_pos, selection):
+
+        cursor = "->"
+        column_width = column_width + len(cursor) + column_spacing + 3
 
         for device_index, profile in enumerate(devices):
-            title = profile["name"].ljust(22)
+            title = profile["name"].ljust(title_width)
             variants = profile["variants"]
 
             for variant_index, variant in enumerate(variants):
                 name = variant["name"]
                 languages = language_symbol(variant)
-                # languages = "".join([LANGUAGES[language] for language in variant["languages"]])
                 if is_section_active and device_index == selection.device and variant_index == selection.variant:
-                    name = "-> " + name
+                    name = f"{cursor} " + name
                 else:
-                    name = "   " + name
-                # While it might seem like a good idea to use `ljust` here to ensure these are consistent lengths
-                # we're instead relying on `name` being of equal length to avoid bumping into Python's terrible
-                # handling of multi-codepoint emoji.
-                # In the future, we might want to use 'grapheme' which provides suport for this.
-                title += f"{name} {languages}  "
+                    name =  " " * len(cursor) + " " + name
+                title += f"{name} {languages}".ljust(column_width)[:column_width]
 
             stdscr.addstr(y_pos + device_index, 0, "  " + title)
 
@@ -267,6 +265,15 @@ def device_picker(stdscr):
 
     while True:
 
+        # Determine the max title and column width.
+        title_width = 0;
+        column_width = 0
+        for vendor in PROFILES:
+            for device in vendor["devices"]:
+                title_width = max(title_width, len(device["name"]))
+                for variant in device["variants"]:
+                    column_width = max(column_width, len(variant["name"]))
+
         (height, width) = stdscr.getmaxyx()
         stdscr.clear()
 
@@ -278,6 +285,9 @@ def device_picker(stdscr):
         for vendor_index, vendor in enumerate(PROFILES):
             stdscr.addstr(offset, 0, vendor["name"])
             offset += render_device_section(devices=vendor["devices"],
+                                            title_width=title_width,
+                                            column_width=column_width,
+                                            column_spacing=2,
                                             is_section_active=vendor_index == selection.vendor,
                                             y_pos=offset + 2,
                                             selection=selection)
