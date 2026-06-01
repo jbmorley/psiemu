@@ -279,9 +279,47 @@
   - name: Series 5mx
     variants:
 
-    - name: 1.05 (250)
+    - name: 1.05(250)
       id: psion5mx
-      # bios: 616f
+      bios: "250"
+      languages:
+      - en-GB
+      display:
+        width: 695
+        height: 305
+        scale: 1
+      touchscreen: True
+      roms:
+      - name: s5mx_uk10_v250.rom
+        md5: 672afdf329d46876d4a0b39f348b2c52
+        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(250)_eng/5mx_v1.05(250)_eng.bin
+      artwork:
+      - name: psion5mx.zip
+        md5: 251cd0d18026469dcf64572388b333fb
+        url: https://scratch.jbmorley.co.uk/mame/artwork/psion5mx.zip
+
+    - name: 1.05(255) (10MB)
+      id: psion5mx
+      bios: "255a"
+      languages:
+      - en-GB
+      display:
+        width: 695
+        height: 305
+        scale: 1
+      touchscreen: True
+      roms:
+      - name: s5mx_uk10_v255.rom
+        md5: 5f9d1d23a05c84859a070723cc9d83bc
+        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(255)_10_eng/5mx_v1.05(255)_10_eng.bin
+      artwork:
+      - name: psion5mx.zip
+        md5: 251cd0d18026469dcf64572388b333fb
+        url: https://scratch.jbmorley.co.uk/mame/artwork/psion5mx.zip
+
+    - name: 1.05(260)
+      id: psion5mx
+      bios: "260"
       languages:
       - en-GB
       display:
