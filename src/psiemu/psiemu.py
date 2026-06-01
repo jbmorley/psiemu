@@ -35,6 +35,7 @@ import requests
 import yaml
 
 from dataclasses import dataclass
+from lxml import etree
 
 PSIEMU_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 RESOURCES_DIRECTORY = os.path.join(PSIEMU_DIRECTORY, "resources")
@@ -66,25 +67,6 @@ LANGUAGES = {
     "nl-NL": {"name": "Dutch", "symbol": "nl"},
     "ru-RU": {"name": "Russian", "symbol": "ru"},
 }
-
-NOTES = """Special keys:
-
-- Menu -> F11 (Shift + F11 on macOS)
-- Psion -> Alt
-- Help -> F10
-
-Silkscreen buttons:
-
-- System -> F1
-- Data -> F2
-- Word -> F3
-- Agenda -> F4
-- Time -> F5
-- World -> F6
-- Calc -> F7
-- Sheet -> F8
-
-"""
 
 HEADER = r"""
  ____      _ _____
@@ -315,7 +297,12 @@ def device_picker(stdscr):
             status_text = None
         else:
             languages = language_description(variant)
-            render_footer(f"{variant["description"]} ({languages})" if "description" in variant else languages, -1)
+            status_components = []
+            if "description" in variant:
+                status_components.append(variant["description"])
+            status_components.append(variant["year"])
+            status_components.append(languages)
+            render_footer("; ".join(status_components), -1)
 
         # Get and handle input.
         key = stdscr.getch()
@@ -368,8 +355,20 @@ def main():
     parser = argparse.ArgumentParser()
     options = parser.parse_args()
 
+    # Create the default controller configuration.
     with open(DEFAULT_CONTROLLER_CONFIG_PATH, "w") as fh:
         fh.write(DEFAULT_CONTROLLER_CONFIG)
+
+    # Load the metadata from MAME.
+    metadata = etree.fromstring(subprocess.check_output(["mame", "-listxml", "psion*"]))
+
+    # Update the configuration with metadata from MAME.
+    for section in PROFILES:
+        for device in section["devices"]:
+            for variant in device["variants"]:
+                machine = metadata.find(f".//machine[@name='{variant["id"]}']")
+                year = metadata.find(".//year").text
+                variant["year"] = metadata.find(".//year").text
 
     os.makedirs(ROM_DIRECTORY, exist_ok=True)
     for profile in PROFILES:
