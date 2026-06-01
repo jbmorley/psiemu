@@ -280,7 +280,7 @@
         md5: 251cd0d18026469dcf64572388b333fb
         url: https://scratch.jbmorley.co.uk/mame/artwork/psion5mx.zip
 
-    - name: 1.05(255) (10MB)
+    - name: 1.05(255)
       id: psion5mx
       bios: "255a"
       languages:
@@ -298,7 +298,25 @@
         md5: 251cd0d18026469dcf64572388b333fb
         url: https://scratch.jbmorley.co.uk/mame/artwork/psion5mx.zip
 
-    - name: 1.05(260)
+    - name: 1.05(255) (16MB)
+      id: psion5mx
+      bios: "255"
+      languages:
+      - en-GB
+      display:
+        width: 695
+        height: 305
+        scale: 1
+      touchscreen: True
+      roms:
+      - name: s5mx_uk16_v255.rom
+        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(255)_16_eng/5mx_v1.05(255)_16_eng.bin
+      artwork:
+      - name: psion5mx.zip
+        md5: 251cd0d18026469dcf64572388b333fb
+        url: https://scratch.jbmorley.co.uk/mame/artwork/psion5mx.zip
+
+    - name: 1.05(260) (16MB)
       id: psion5mx
       bios: "260"
       languages:
