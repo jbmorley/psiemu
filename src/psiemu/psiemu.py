@@ -309,7 +309,7 @@ def device_picker(stdscr):
         variant = profile["variants"][selection.variant]
 
         # Render the footer.
-        render_footer("ent: run   c: copy command   q: quit", -2, curses.A_REVERSE)
+        render_footer("ent:run   c:copy command   q:quit", -2, curses.A_REVERSE)
         if status_text is not None:
             render_footer(status_text, -1)
             status_text = None
