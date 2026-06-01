@@ -136,19 +136,19 @@ def download(url, filename):
         return destination_path
 
 
-def hash(path):
-    md5 = hashlib.md5()
+def hash(path, method=hashlib.md5):
+    hash = method()
     if os.path.isdir(path):
         for f in sorted(listdir(path, include_hidden=False)):
-            md5.update(shasum(os.path.join(path, f)).encode('utf-8'))
+            hash.update(shasum(os.path.join(path, f)).encode('utf-8'))
     else:
         with open(path, 'rb') as f:
             while True:
                 data = f.read(65536)
                 if not data:
                     break
-                md5.update(data)
-    return md5.hexdigest()
+                hash.update(data)
+    return hash.hexdigest()
 
 
 def mame_command(profile):
@@ -360,7 +360,7 @@ def main():
         fh.write(DEFAULT_CONTROLLER_CONFIG)
 
     # Load the metadata from MAME.
-    metadata = etree.fromstring(subprocess.check_output(["mame", "-listxml", "psion*"]))
+    metadata = etree.fromstring(subprocess.check_output(["mame", "-listxml", "psion*", "siena*", "pocketbk*"]))
 
     # Update the configuration with metadata from MAME.
     for section in PROFILES:
@@ -370,6 +370,7 @@ def main():
                 year = metadata.find(".//year").text
                 variant["year"] = metadata.find(".//year").text
 
+    # Download ROMs.
     os.makedirs(ROM_DIRECTORY, exist_ok=True)
     for profile in PROFILES:
         for device in profile["devices"]:
@@ -379,21 +380,23 @@ def main():
                     os.makedirs(device_directory, exist_ok=True)
                     for rom in variant["roms"]:
                         rom_path = os.path.join(device_directory, rom["name"])
-                        if "md5" in rom and os.path.exists(rom_path):
-                            if hash(rom_path) == rom["md5"]:
+                        rom_metadata = metadata.find(f".//machine[@name='{variant["id"]}']/rom[@name='{rom["name"]}']")
+                        rom_sha = rom_metadata.get("sha1")
+                        if os.path.exists(rom_path):
+                            if hash(rom_path, hashlib.sha1) == rom_sha:
                                 continue
                             os.remove(rom_path)
                         download(rom["url"], rom_path)
                 if "artwork" in variant:
                     for artwork in variant["artwork"]:
                         artwork_path = os.path.join(ARTWORK_DIRECTORY, artwork["name"])
-                        if "md5" in artwork and os.path.exists(artwork_path):
+                        if os.path.exists(artwork_path):
                             if hash(artwork_path) == artwork["md5"]:
                                 continue
                             os.remove(artwork_path)
                         download(artwork["url"], artwork_path)
 
-
+    # Run.
     os.environ.setdefault('ESCDELAY', '25')
     curses.wrapper(lambda stdscr: device_picker(stdscr))
 
