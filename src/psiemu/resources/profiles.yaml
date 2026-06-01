@@ -15,10 +15,8 @@
       display:
         scale: 2
       roms:
-      - name: 3504-3001-01_19-11-91v1.77f_eng.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.77f_eng/s3_v1.77f_eng1.bin
-      - name: 3504-3002-01_19-11-91v1.77f_eng.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.77f_eng/s3_v1.77f_eng2.bin
+        3504-3001-01_19-11-91v1.77f_eng.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.77f_eng/s3_v1.77f_eng1.bin
+        3504-3002-01_19-11-91v1.77f_eng.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.77f_eng/s3_v1.77f_eng2.bin
 
     - name: V1.91F
       id: psion3
@@ -33,8 +31,7 @@
       display:
         scale: 2
       roms:
-      - name: s3_v1.91f_multi.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.91f_multi/s3_v1.91f_multi.bin
+        s3_v1.91f_multi.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.91f_multi/s3_v1.91f_multi.bin
 
     - name: V1.80F
       id: psion3
@@ -48,8 +45,7 @@
       display:
         scale: 2
       roms:
-      - name: s3_v1.80f_multi.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.80f_multi/s3_v1.80f_multi.bin
+        s3_v1.80f_multi.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.80f_multi/s3_v1.80f_multi.bin
 
   # Series 3s
   - name: Series 3s
@@ -64,8 +60,7 @@
       display:
         scale: 2
       roms:
-      - name: s3_v1.91f_eng.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.91f_eng/s3_v1.91f_eng.bin
+        s3_v1.91f_eng.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/s3_v1.91f_eng/s3_v1.91f_eng.bin
 
   # Series 3a (1MB ROM)
   - name: Series 3a (1MB ROM)
@@ -80,8 +75,7 @@
       display:
         scale: 1
       roms:
-      - name: s3a_v3.22f_eng.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.22f_eng/s3a_v3.22f_eng.bin
+        s3a_v3.22f_eng.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.22f_eng/s3a_v3.22f_eng.bin
 
   # Series 3a (2MB ROM)
   - name: Series 3a (2MB ROM)
@@ -96,8 +90,7 @@
       display:
         scale: 1
       roms:
-      - name: s3a_v3.40f_eng.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.40f_eng/s3a_v3.40f_eng.bin
+        s3a_v3.40f_eng.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.40f_eng/s3a_v3.40f_eng.bin
 
     - name: V3.40F
       id: psion3a2_it
@@ -108,8 +101,7 @@
       display:
         scale: 1
       roms:
-      - name: s3a_v3.40f_ita.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.40f_ita/s3a_v3.40f_ita.bin
+        s3a_v3.40f_ita.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.40f_ita/s3a_v3.40f_ita.bin
 
     - name: V3.40F
       id: psion3a2_us
@@ -120,8 +112,7 @@
       display:
         scale: 1
       roms:
-      - name: s3a_v3.40f_usa.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.40f_usa/s3a_v3.40f_usa.bin
+        s3a_v3.40f_usa.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.40f_usa/s3a_v3.40f_usa.bin
 
     - name: V3.41F
       id: psion3a2_de
@@ -132,8 +123,7 @@
       display:
         scale: 1
       roms:
-      - name: s3a_v3.41f_deu.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.41f_ger/s3a_v3.41f_ger.bin
+        s3a_v3.41f_deu.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.41f_ger/s3a_v3.41f_ger.bin
 
     - name: V3.43F
       id: psion3a2_ru
@@ -144,8 +134,7 @@
       display:
         scale: 1
       roms:
-      - name: s3a_v3.43f_rus.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.43f_rus/s3a_v3.43f_rus.bin
+        s3a_v3.43f_rus.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/s3a_v3.43f_rus/s3a_v3.43f_rus.bin
 
   - name: Siena
     variants:
@@ -159,8 +148,7 @@
       display:
         scale: 1
       roms:
-        - name: vine_v4.20f_eng.bin
-          url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Siena/vine_v4.20f_eng/vine_v4.20f_eng.bin
+        vine_v4.20f_eng.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Siena/vine_v4.20f_eng/vine_v4.20f_eng.bin
 
     - name: V4.21F
       id: siena_fr
@@ -171,8 +159,7 @@
       display:
         scale: 1
       roms:
-      - name: vine_v4.21f_frn.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Siena/vine_v4.21f_fre/vine_v4.21f_fre.bin
+        vine_v4.21f_frn.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Siena/vine_v4.21f_fre/vine_v4.21f_fre.bin
 
   # Series 3c
   - name: Series 3c
@@ -186,8 +173,7 @@
       display:
         scale: 1
       roms:
-      - name: oak_v5.20f_eng.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3c/oak_v5.20f_eng/oak_v5.20f_eng.bin
+        oak_v5.20f_eng.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3c/oak_v5.20f_eng/oak_v5.20f_eng.bin
 
   # Series 3mx
   - name: Series 3mx
@@ -201,8 +187,7 @@
       display:
         scale: 1
       roms:
-      - name: maple_v6.16f_uk.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.16f_eng/maple_v6.16f_eng.bin
+        maple_v6.16f_uk.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.16f_eng/maple_v6.16f_eng.bin
 
     - name: V6.17F
       id: psion3mx_nl
@@ -212,8 +197,7 @@
       display:
         scale: 1
       roms:
-      - name: maple_v6.17f_nl.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.17f_nl/maple_v6.17f_nl.bin
+        maple_v6.17f_nl.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.17f_nl/maple_v6.17f_nl.bin
 
     - name: V6.20F
       id: psion3mx_fr
@@ -223,8 +207,7 @@
       display:
         scale: 1
       roms:
-      - name: maple_v6.20f_fre.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.20f_fre/maple_v6.20f_fre.bin
+        maple_v6.20f_fre.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3mx/maple_v6.20f_fre/maple_v6.20f_fre.bin
 
   # Series 5mx
   - name: Series 5mx
@@ -241,8 +224,7 @@
         scale: 1
       touchscreen: True
       roms:
-      - name: s5mx_uk10_v250.rom
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(250)_eng/5mx_v1.05(250)_eng.bin
+        s5mx_uk10_v250.rom: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(250)_eng/5mx_v1.05(250)_eng.bin
       artwork:
       - name: psion5mx.zip
         md5: 251cd0d18026469dcf64572388b333fb
@@ -259,8 +241,7 @@
         scale: 1
       touchscreen: True
       roms:
-      - name: s5mx_uk10_v255.rom
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(255)_10_eng/5mx_v1.05(255)_10_eng.bin
+        s5mx_uk10_v255.rom: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(255)_10_eng/5mx_v1.05(255)_10_eng.bin
       artwork:
       - name: psion5mx.zip
         md5: 251cd0d18026469dcf64572388b333fb
@@ -277,8 +258,7 @@
         scale: 1
       touchscreen: True
       roms:
-      - name: s5mx_uk16_v255.rom
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(255)_16_eng/5mx_v1.05(255)_16_eng.bin
+        s5mx_uk16_v255.rom: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(255)_16_eng/5mx_v1.05(255)_16_eng.bin
       artwork:
       - name: psion5mx.zip
         md5: 251cd0d18026469dcf64572388b333fb
@@ -295,8 +275,7 @@
         scale: 1
       touchscreen: True
       roms:
-      - name: s5mx_uk16_v260.rom
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(260)_eng/5mx_v1.05(260)_eng.bin
+        s5mx_uk16_v260.rom: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/5mx/5mx_v1.05(260)_eng/5mx_v1.05(260)_eng.bin
       artwork:
       - name: psion5mx.zip
         md5: 251cd0d18026469dcf64572388b333fb
@@ -317,8 +296,7 @@
       display:
         scale: 1
       roms:
-      - name: w1_v0.24b.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v0.24b_eng/w1_v0.24b_eng.bin
+        w1_v0.24b.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v0.24b_eng/w1_v0.24b_eng.bin
 
     - name: V1.00F
       id: psionwa
@@ -328,8 +306,7 @@
       display:
         scale: 1
       roms:
-      - name: w1_v1.00f.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v1.00f_eng/w1_v1.00f_eng.bin
+        w1_v1.00f.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v1.00f_eng/w1_v1.00f_eng.bin
 
     - name: V2.40F
       id: psionwa
@@ -339,8 +316,7 @@
       display:
         scale: 1
       roms:
-      - name: w1_v2.40f.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v2.40f_eng/w1_v2.40f_eng.bin
+        w1_v2.40f.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Workabout/w1_v2.40f_eng/w1_v2.40f_eng.bin
 
   # Workabout MX
   - name: Workabout MX
@@ -354,8 +330,7 @@
       display:
         scale: 1
       roms:
-      - name: w2mx_v7.20f.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/WorkaboutMX/w2mx_v7.20f_eng/w2mx_v7.20f_eng.bin
+        w2mx_v7.20f.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/WorkaboutMX/w2mx_v7.20f_eng/w2mx_v7.20f_eng.bin
 
 # Acorn
 - name: Acorn
@@ -373,10 +348,8 @@
       display:
         scale: 2
       roms:
-      - name: pb_v1.91f_acn.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/pb_v1.91f_acn/pb_v1.91f_acn.bin
-      - name: acspell.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/pb_v1.91f_acn/acspell.bin
+        pb_v1.91f_acn.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/pb_v1.91f_acn/pb_v1.91f_acn.bin
+        acspell.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3/pb_v1.91f_acn/acspell.bin
 
   # Pocket Book II
   - name: Acorn Pocket Book II
@@ -390,5 +363,4 @@
       display:
         scale: 1
       roms:
-      - name: pb2_v1.30f_acn.bin
-        url: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/pb2_v1.30f_acn/pb2_v1.30f_acn.bin
+        pb2_v1.30f_acn.bin: https://github.com/explit28/Psion-ROM/raw/refs/tags/2026-05-27/Series3a/pb2_v1.30f_acn/pb2_v1.30f_acn.bin

@@ -383,15 +383,15 @@ def main():
                 if "roms" in variant:
                     device_directory = os.path.join(ROM_DIRECTORY, variant["id"] if "id" in variant else device["id"])
                     os.makedirs(device_directory, exist_ok=True)
-                    for rom in variant["roms"]:
-                        rom_path = os.path.join(device_directory, rom["name"])
-                        rom_metadata = metadata.find(f".//machine[@name='{variant["id"]}']/rom[@name='{rom["name"]}']")
+                    for rom_name, rom_url in variant["roms"].items():
+                        rom_path = os.path.join(device_directory, rom_name)
+                        rom_metadata = metadata.find(f".//machine[@name='{variant["id"]}']/rom[@name='{rom_name}']")
                         rom_sha = rom_metadata.get("sha1")
                         if os.path.exists(rom_path):
                             if hash(rom_path, hashlib.sha1) == rom_sha:
                                 continue
                             os.remove(rom_path)
-                        download(rom["url"], rom_path)
+                        download(rom_url, rom_path)
                 if "artwork" in variant:
                     for artwork in variant["artwork"]:
                         artwork_path = os.path.join(ARTWORK_DIRECTORY, artwork["name"])
