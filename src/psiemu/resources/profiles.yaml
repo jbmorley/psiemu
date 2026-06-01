@@ -13,8 +13,6 @@
       languages:
       - en-GB
       display:
-        width: 240
-        height: 80
         scale: 2
       roms:
       - name: 3504-3001-01_19-11-91v1.77f_eng.bin
@@ -33,8 +31,6 @@
       - es-ES
       - it-IT
       display:
-        width: 240
-        height: 80
         scale: 2
       roms:
       - name: s3_v1.91f_multi.bin
@@ -50,8 +46,6 @@
       - de-DE
       - it-IT
       display:
-        width: 240
-        height: 80
         scale: 2
       roms:
       - name: s3_v1.80f_multi.bin
@@ -68,8 +62,6 @@
       languages:
       - en-GB
       display:
-        width: 240
-        height: 80
         scale: 2
       roms:
       - name: s3_v1.91f_eng.bin
@@ -86,8 +78,6 @@
       languages:
       - en-GB
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: s3a_v3.22f_eng.bin
@@ -104,8 +94,6 @@
       languages:
       - en-GB
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: s3a_v3.40f_eng.bin
@@ -118,8 +106,6 @@
       languages:
       - it-IT
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: s3a_v3.40f_ita.bin
@@ -132,8 +118,6 @@
       languages:
       - en-US
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: s3a_v3.40f_usa.bin
@@ -146,8 +130,6 @@
       languages:
       - de-DE
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: s3a_v3.41f_deu.bin
@@ -160,8 +142,6 @@
       languages:
       - ru-RU
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: s3a_v3.43f_rus.bin
@@ -177,8 +157,6 @@
       languages:
       - en-GB
       display:
-        width: 240
-        height: 160
         scale: 1
       roms:
         - name: vine_v4.20f_eng.bin
@@ -191,8 +169,6 @@
       languages:
       - fr-FR
       display:
-        width: 240
-        height: 160
         scale: 1
       roms:
       - name: vine_v4.21f_frn.bin
@@ -208,8 +184,6 @@
       languages:
       - en-GB
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: oak_v5.20f_eng.bin
@@ -225,8 +199,6 @@
       languages:
       - en-GB
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: maple_v6.16f_uk.bin
@@ -238,8 +210,6 @@
       languages:
       - nl-NL
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: maple_v6.17f_nl.bin
@@ -251,8 +221,6 @@
       languages:
       - fr-FR
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: maple_v6.20f_fre.bin
@@ -347,8 +315,6 @@
       languages:
       - en-GB
       display:
-        width: 240
-        height: 100
         scale: 1
       roms:
       - name: w1_v0.24b.bin
@@ -360,8 +326,6 @@
       languages:
       - en-GB
       display:
-        width: 240
-        height: 100
         scale: 1
       roms:
       - name: w1_v1.00f.bin
@@ -373,8 +337,6 @@
       languages:
       - en-GB
       display:
-        width: 240
-        height: 100
         scale: 1
       roms:
       - name: w1_v2.40f.bin
@@ -390,8 +352,6 @@
       languages:
       - en-GB
       display:
-        width: 240
-        height: 100
         scale: 1
       roms:
       - name: w2mx_v7.20f.bin
@@ -411,8 +371,6 @@
       languages:
       - en-GB
       display:
-        width: 240
-        height: 80
         scale: 2
       roms:
       - name: pb_v1.91f_acn.bin
@@ -430,8 +388,6 @@
       languages:
       - en-GB
       display:
-        width: 480
-        height: 160
         scale: 1
       roms:
       - name: pb2_v1.30f_acn.bin

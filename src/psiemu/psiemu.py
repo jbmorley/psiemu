@@ -368,7 +368,12 @@ def main():
             for variant in device["variants"]:
                 machine = metadata.find(f".//machine[@name='{variant["id"]}']")
                 year = metadata.find(".//year").text
-                variant["year"] = metadata.find(".//year").text
+                variant["year"] = machine.find(".//year").text
+                display = machine.find(".//display")
+                if "width" not in variant["display"]:
+                    variant["display"]["width"] = int(display.get("width"))
+                if "height" not in variant["display"]:
+                    variant["display"]["height"] = int(display.get("height"))
 
     # Download ROMs.
     os.makedirs(ROM_DIRECTORY, exist_ok=True)
