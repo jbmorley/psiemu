@@ -293,7 +293,7 @@ def device_picker(stdscr):
         for vendor_index, vendor in enumerate(PROFILES):
             stdscr.addstr(offset, 0, vendor["name"])
             offset += render_device_section(devices=vendor["devices"],
-                                            cursor="=>",
+                                            cursor="->",
                                             title_width=title_width,
                                             column_width=column_width,
                                             column_spacing=2,
