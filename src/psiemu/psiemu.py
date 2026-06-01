@@ -24,6 +24,7 @@ import argparse
 import curses
 import hashlib
 import logging
+import math
 import os
 import shutil
 import subprocess
@@ -235,27 +236,34 @@ def device_picker(stdscr):
         except curses.error:
             pass
 
-    def render_device_section(devices, title_width, column_width, column_spacing, is_section_active, y_pos, selection):
+    def render_device_section(devices, cursor, title_width, column_width, column_spacing, is_section_active, y_pos, selection):
+        (height, width) = stdscr.getmaxyx()
 
-        cursor = "->"
         column_width = column_width + len(cursor) + column_spacing + 3
+        column_count = math.floor((width - (title_width + column_spacing) + column_spacing) / column_width)
+        section_height = 2  # Title
 
         for device_index, profile in enumerate(devices):
             title = profile["name"].ljust(title_width)
             variants = profile["variants"]
+            section_height += math.ceil(len(variants) / column_count)
+
+            stdscr.addstr(y_pos, 0, title)
 
             for variant_index, variant in enumerate(variants):
+                if variant_index >= column_count:
+                    y_pos += 1
+                x_pos = (variant_index % column_count) * column_width
                 name = variant["name"]
                 languages = language_symbol(variant)
-                if is_section_active and device_index == selection.device and variant_index == selection.variant:
-                    name = f"{cursor} " + name
-                else:
-                    name =  " " * len(cursor) + " " + name
-                title += f"{name} {languages}".ljust(column_width)[:column_width]
+                is_selected = is_section_active and device_index == selection.device and variant_index == selection.variant
+                cursor_string = cursor if is_selected else " " * len(cursor)
+                name = f"{cursor_string} {name} {languages}"
+                stdscr.addstr(y_pos, title_width + column_spacing + x_pos, name)
 
-            stdscr.addstr(y_pos + device_index, 0, "  " + title)
+            y_pos += 1
 
-        return len(devices) + 2
+        return section_height
 
     curses.use_default_colors()
     curses.curs_set(0)
@@ -285,6 +293,7 @@ def device_picker(stdscr):
         for vendor_index, vendor in enumerate(PROFILES):
             stdscr.addstr(offset, 0, vendor["name"])
             offset += render_device_section(devices=vendor["devices"],
+                                            cursor="=>",
                                             title_width=title_width,
                                             column_width=column_width,
                                             column_spacing=2,
