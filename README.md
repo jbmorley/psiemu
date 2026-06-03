@@ -4,15 +4,45 @@ Lightweight TUI launcher for Psion MAME emulators.
 
 ![](images/preview.gif)
 
-## Usage
+## Installation
+
+PsiEmu is available on PyPI. One of the easiest ways to install it is using [uv](https://docs.astral.sh/uv/):
 
 ```sh
-git clone ssh://git@codeberg.org/psion/psiemu.git
-cd psiemu
-./psiemu
+uv tool install psiemu
+```
+
+Check for updates:
+
+```sh
+uv tool upgrade psiemu
 ```
 
 ## Development
+
+### Clone
+
+```sh
+git clone ssh://git@codeberg.org/psion/psiemu.git
+```
+
+### Dependencies
+
+PsiEmu includes a `Pipfile` for local development. Install using `pipenv` as follows:
+
+```sh
+pipenv install
+```
+
+### Running
+
+The top level executable bash script automatically runs the local source using `pipenv`:
+  
+```sh
+./psiemu
+```
+
+### MAME
 
 Print specific details of MAME systems using `-listroms` and `-listbios`.
 
