@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta:__legacy__"
 name = "psiemu"
 readme = "README.md"
 license = "MIT"
+requires-python = ">=3.12"
 authors = [
   {name = "Jason Morley", email = "hello@jbmorley.co.uk"}
 ]
@@ -14,6 +15,7 @@ dependencies = [
   "pyclip",
   "pyyaml",
   "requests",
+  "textual",
 ]
 dynamic = ["version"]
 
