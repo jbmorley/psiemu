@@ -21,10 +21,7 @@
 # SOFTWARE.
 
 import argparse
-import curses
 import hashlib
-import logging
-import math
 import os
 import shutil
 import subprocess
@@ -36,6 +33,10 @@ import yaml
 
 from dataclasses import dataclass
 from lxml import etree
+from textual.app import App, ComposeResult
+from textual.containers import Vertical, Horizontal, VerticalScroll
+from textual.widget import Widget, Text
+from textual.widgets import Tree, Placeholder, Label, Static
 
 PSIEMU_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 RESOURCES_DIRECTORY = os.path.join(PSIEMU_DIRECTORY, "resources")
@@ -74,10 +75,9 @@ HEADER = r"""
 | |_) / __| |  _| | '_ ` _ \| | | |
 |  __/\__ \ | |___| | | | | | |_| |
 |_|   |___/_|_____|_| |_| |_|\__,_|
-
-MAME Emulation Launcher for Psion Devices
 """[1:]
-HEADER_LENGTH = len(HEADER.split("\n"))
+
+DESCRIPTION = "MAME Emulation Launcher for Psion Devices"
 
 PSION_LOGO = r"""
    _   _
@@ -86,7 +86,6 @@ PSION_LOGO = r"""
  _________
 |_________|
 """[1:]
-PSION_LOGO_LENGTH = len(PSION_LOGO.split("\n"))
 
 DEFAULT_CONTROLLER_CONFIG = """
 <?xml version="1.0"?>
@@ -106,17 +105,6 @@ DEFAULT_CONTROLLER_CONFIG = """
 </mameconfig>
 """[1:]
 DEFAULT_CONTROLLER_CONFIG_PATH = os.path.join(CTRLR_DIRECTORY, "default.cfg")
-
-
-with open(PROFILES_PATH) as fh:
-    PROFILES = yaml.safe_load(fh)
-
-
-@dataclass
-class Selection:
-    vendor: int
-    device: int
-    variant: int
 
 
 def download(url, filename):
@@ -194,166 +182,135 @@ def run_mame(profile):
                      stderr=subprocess.DEVNULL)
 
 
-def language_symbol(variant):
-    languages = variant["languages"]
-    if len(languages) > 1:
-        return "+ "
-    elif len(languages) == 1:
-        return LANGUAGES[languages[0]]["symbol"]
-    else:
-        return " "
-
-
 def language_description(variant):
     return ", " .join([LANGUAGES[language]["name"] for language in variant["languages"]])
 
 
-def device_picker(stdscr):
+def variant_description(variant):
+    languages = language_description(variant)
+    status_components = []
+    if "description" in variant:
+        status_components.append(variant["description"])
+    status_components.append(variant["year"])
+    status_components.append(languages)
+    return "; ".join(status_components)
 
-    def render_footer(text, offset, attr=0):
-        (height, width) = stdscr.getmaxyx()
-        text = text.ljust(width)[:width]
-        try:
-            stdscr.addstr(height + offset, 0, text, attr)
-        except curses.error:
-            pass
 
-    def render_device_section(devices, cursor, title_width, column_width, column_spacing, is_section_active, y_pos, selection):
-        (height, width) = stdscr.getmaxyx()
+class Header(Vertical):
 
-        column_width = column_width + len(cursor) + column_spacing + 3
-        column_count = math.floor((width - (title_width + column_spacing) + column_spacing) / column_width)
-        section_height = 2  # Title
+    DEFAULT_CSS = """
+    Header {
+        height: 7;
+        dock: top;
+        margin-bottom: 1;
+    }
+    #Title {
+        width: 1fr;
+    }
+    #Logo {
+        width: auto;
+    }
+    """
 
-        for device_index, profile in enumerate(devices):
-            title = profile["name"].ljust(title_width)
-            variants = profile["variants"]
-            section_height += math.ceil(len(variants) / column_count)
+    def compose(self):
+        with Horizontal():
+            yield Label(HEADER, id="Title")
+            yield Label(PSION_LOGO, id="Logo")
+        yield Label(DESCRIPTION)
 
-            stdscr.addstr(y_pos, 0, title)
 
-            for variant_index, variant in enumerate(variants):
-                if variant_index >= column_count:
-                    y_pos += 1
-                x_pos = (variant_index % column_count) * column_width
-                name = variant["name"]
-                languages = language_symbol(variant)
-                is_selected = is_section_active and device_index == selection.device and variant_index == selection.variant
-                cursor_string = cursor if is_selected else " " * len(cursor)
-                name = f"{cursor_string} {name} {languages}"
-                stdscr.addstr(y_pos, title_width + column_spacing + x_pos, name)
+class KeyboardShortcuts(Widget):
 
-            y_pos += 1
+    DEFAULT_CSS = """
+    KeyboardShortcuts {
+        height: 1;
+        text-style: reverse;
+    }
+    """
 
-        return section_height
+    def __init__(self, text, **kwargs):
+        super().__init__(**kwargs)
+        self.text = text
 
-    curses.use_default_colors()
-    curses.curs_set(0)
+    def render(self):
+        return Text(self.text.ljust(self.size.width))
 
-    selection = Selection(0, 0, 0)
-    status_text = None
 
-    while True:
+# TODO: Rename to Footer.
+class Footer(Vertical):
 
-        # Determine the max title and column width.
-        title_width = 0;
-        column_width = 0
-        for vendor in PROFILES:
-            for device in vendor["devices"]:
-                title_width = max(title_width, len(device["name"]))
-                for variant in device["variants"]:
-                    column_width = max(column_width, len(variant["name"]))
+    DEFAULT_CSS = """
+    Footer {
+        height: 2;
+        dock: bottom;
+        width: 1fr;
+    }
+    """
 
-        (height, width) = stdscr.getmaxyx()
-        stdscr.clear()
+    def compose(self):
+        yield KeyboardShortcuts("ent:run   c:copy command   q:quit", id="Shortcuts")
+        yield Static(id="Description", markup=False)
 
-        stdscr.addstr(0, 0, HEADER)
-        for i, line in enumerate(PSION_LOGO.split("\n")):
-            stdscr.addstr(i, width-11, line)
-        offset = HEADER_LENGTH
+    def update(self, text):
+        self.query_one("#Description", Static).update(text)
 
-        for vendor_index, vendor in enumerate(PROFILES):
-            stdscr.addstr(offset, 0, vendor["name"])
-            offset += render_device_section(devices=vendor["devices"],
-                                            cursor="->",
-                                            title_width=title_width,
-                                            column_width=column_width,
-                                            column_spacing=2,
-                                            is_section_active=vendor_index == selection.vendor,
-                                            y_pos=offset + 2,
-                                            selection=selection)
-            offset += 1
 
-        # Current selection.
-        vendor = PROFILES[selection.vendor]
-        devices = vendor["devices"]
-        profile = vendor["devices"][selection.device]
-        variant = profile["variants"][selection.variant]
+class TreeApp(App):
 
-        # Render the footer.
-        render_footer("ent:run   c:copy command   q:quit", -2, curses.A_REVERSE)
-        if status_text is not None:
-            render_footer(status_text, -1)
-            status_text = None
-        else:
-            languages = language_description(variant)
-            status_components = []
-            if "description" in variant:
-                status_components.append(variant["description"])
-            status_components.append(variant["year"])
-            status_components.append(languages)
-            render_footer("; ".join(status_components), -1)
+    BINDINGS = [
+        ("c", "copy", "Copy command"),
+        ("q", "quit", "Quit"),
+    ]
 
-        # Get and handle input.
-        key = stdscr.getch()
-        if key == curses.KEY_UP:
+    def __init__(self, sections):
+        self.sections = sections
+        super().__init__()
 
-            if selection.device > 0:
-                selection.device -= 1
-                selection.variant = 0
-            elif selection.vendor > 0:
-                selection.vendor -= 1
-                selection.device = len(PROFILES[selection.vendor]["devices"]) - 1
-                selection.variant = 0
+    def compose(self) -> ComposeResult:
 
-        elif key == curses.KEY_DOWN:
+        tree: Tree[str] = Tree("Vendors")
+        tree.show_root = False
+        tree.root.expand()
+        for vendor_index, vendor in enumerate(self.sections):
+            vendor_node = tree.root.add(vendor["name"])
+            for profile in vendor["devices"]:
+                device_node = vendor_node.add(profile["name"])
+                for variant_index, variant in enumerate(profile["variants"]):
+                    device_node.add_leaf(f"{variant["name"]} ({language_description(variant)})", data=variant)
 
-            if selection.device < len(devices) - 1:
-                selection.device += 1
-                selection.variant = 0
-            elif selection.vendor < len(PROFILES) - 1:
-                selection.vendor += 1
-                selection.device = 0
-                selection.variant = 0
+        yield Header()
+        yield tree
+        yield Footer()
 
-        elif key == curses.KEY_LEFT:
+    def on_mount(self):
+        self.theme = "ansi-dark"
+        tree = self.query_one(Tree)
+        tree.call_after_refresh(tree.move_cursor, tree.root.children[0])
 
-            if selection.variant > 0:
-                selection.variant -= 1
+    def on_tree_node_highlighted(self, event: Tree.NodeHighlighted) -> None:
+        variant = event.node.data
+        self.query_one(Footer).update(variant_description(variant) if variant is not None else "")
 
-        elif key == curses.KEY_RIGHT:
+    def on_tree_node_selected(self, event: Tree.NodeSelected) -> None:
+        variant = event.node.data
+        if variant is None:
+            return
+        run_mame(variant)
 
-            variants = profile["variants"]
-            if selection.variant < len(variants) - 1:
-                selection.variant += 1
-
-        elif key == ord('\n'):
-
-            run_mame(variant)
-
-        elif key == ord('c'):
-
-            pyclip.copy(" ".join(mame_command(variant)))
-            status_text = "Command line copied to clipboard"
-
-        elif key == 27 or key == ord('q'):
-
-            return None
+    def action_copy(self) -> None:
+        variant = self.query_one(Tree).cursor_node.data
+        if variant is None:
+            return
+        pyclip.copy(" ".join(mame_command(variant)))
+        self.query_one(Footer).update("Command line copied to clipboard")
 
 
 def main():
     parser = argparse.ArgumentParser()
     options = parser.parse_args()
+
+    with open(PROFILES_PATH) as fh:
+        profiles = yaml.safe_load(fh)
 
     # Create the default controller configuration.
     with open(DEFAULT_CONTROLLER_CONFIG_PATH, "w") as fh:
@@ -363,7 +320,7 @@ def main():
     metadata = etree.fromstring(subprocess.check_output(["mame", "-listxml", "psion*", "siena*", "pocketbk*"]))
 
     # Update the configuration with metadata from MAME.
-    for section in PROFILES:
+    for section in profiles:
         for device in section["devices"]:
             for variant in device["variants"]:
                 machine = metadata.find(f".//machine[@name='{variant["id"]}']")
@@ -377,7 +334,7 @@ def main():
 
     # Download ROMs.
     os.makedirs(ROM_DIRECTORY, exist_ok=True)
-    for profile in PROFILES:
+    for profile in profiles:
         for device in profile["devices"]:
             for variant in device["variants"]:
                 if "roms" in variant:
@@ -402,8 +359,8 @@ def main():
                         download(artwork["url"], artwork_path)
 
     # Run.
-    os.environ.setdefault('ESCDELAY', '25')
-    curses.wrapper(lambda stdscr: device_picker(stdscr))
+    app = TreeApp(sections=profiles)
+    app.run(mouse=False)
 
 
 if __name__ == "__main__":
