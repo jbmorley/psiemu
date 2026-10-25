@@ -1,5 +1,5 @@
 # Psion
-- name: Psion - Consumer Devices
+- name: Psion
   devices:
 
   # Series 3
@@ -280,9 +280,6 @@
       - name: psion5mx.zip
         md5: 251cd0d18026469dcf64572388b333fb
         url: https://scratch.jbmorley.co.uk/mame/artwork/psion5mx.zip
-
-- name: Psion - Enterprise Devices
-  devices:
 
   # Workabout
   - name: Workabout

@@ -9,6 +9,7 @@ lxml = "*"
 pyclip = "*"
 pyyaml = "*"
 requests = "*"
+textual = "*"
 
 [dev-packages]
 build = "*"
