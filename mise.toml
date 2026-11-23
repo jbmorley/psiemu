@@ -1,3 +1,10 @@
 [tools]
 
 python = "3.12.13"
+uv = "latest"
+
+"pipx:changes-semver" = "6"
+
+[env]
+
+UV_PYTHON_PREFERENCE = "only-system"
