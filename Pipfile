@@ -11,9 +11,6 @@ pyyaml = "*"
 requests = "*"
 textual = "*"
 
-[dev-packages]
-build = "*"
-
 [requires]
 
 python_version = "3.12"
