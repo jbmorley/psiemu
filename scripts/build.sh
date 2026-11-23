@@ -29,8 +29,6 @@ ROOT_DIRECTORY="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" &> /dev/
 BUILD_DIRECTORY="$ROOT_DIRECTORY/dist"
 SOURCE_DIRECTORY="$ROOT_DIRECTORY/src"
 
-CHANGES_SCRIPT="pipenv run changes"
-
 # Configure the path.
 PATH=$PATH:"$ROOT_DIRECTORY"
 
@@ -44,8 +42,8 @@ fi
 mkdir -p "$BUILD_DIRECTORY"
 
 # Determine the version.
-export VERSION=$($CHANGES_SCRIPT version)
-export RELEASED_VERSION=$($CHANGES_SCRIPT version --released)
+export VERSION=$(changes version)
+export RELEASED_VERSION=$(changes version --released)
 
 # Build the package.
 cd "$SOURCE_DIRECTORY"
