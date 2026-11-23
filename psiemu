@@ -20,9 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-ROOT_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+set -euo pipefail
+
+ROOT_DIRECTORY="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 SOURCE_DIRECTORY="$ROOT_DIRECTORY/src"
 NAME=`basename "$0"`
 
-export PIPENV_PIPFILE="$ROOT_DIRECTORY/Pipfile"
-PYTHONPATH="$SOURCE_DIRECTORY" pipenv run python3 -m psiemu "$@"
+export MISE_CEILING_PATHS="$(dirname "$ROOT_DIRECTORY")"
+eval "$(cd "$ROOT_DIRECTORY" && mise env -s bash)"
+exec uv run  --project "$SOURCE_DIRECTORY" "$NAME" "$@"
