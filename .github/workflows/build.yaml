@@ -81,10 +81,10 @@ jobs:
       run: scripts/release.sh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      if: ${{ github.event_name == 'schedule' && github.ref == 'refs/heads/main' }}
+      if: ${{ github.ref == 'refs/heads/main' }}
 
   publish-to-pypi:
-    if: ${{ github.event_name == 'schedule' && github.ref == 'refs/heads/main' && needs.build.outputs.needs_release == 'true' }}
+    if: ${{ (github.ref == 'refs/heads/main') && (needs.build.outputs.needs_release == 'true') }}
     needs:
     - build
     runs-on: ubuntu-26.04
